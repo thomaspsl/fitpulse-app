@@ -1,12 +1,14 @@
+import 'package:fitpulse_app/app/components/layouts/transition.dart';
 import 'package:fitpulse_app/app/screens/plannifieur/index.dart';
-import 'package:fitpulse_app/app/screens/programme/index.dart';
+import 'package:fitpulse_app/app/screens/exercice/create.dart';
+import 'package:fitpulse_app/app/screens/exercice/index.dart';
 import 'package:fitpulse_app/app/screens/planning/index.dart';
+import 'package:fitpulse_app/app/screens/register/index.dart';
+import 'package:fitpulse_app/app/components/app/footer.dart';
+import 'package:fitpulse_app/app/components/app/header.dart';
 import 'package:fitpulse_app/app/screens/profile/index.dart';
-import 'package:fitpulse_app/app/screens/seance/create.dart';
 import 'package:fitpulse_app/app/screens/seance/index.dart';
-import 'package:fitpulse_app/app/widgets/transition.dart';
-import 'package:fitpulse_app/app/widgets/footer.dart';
-import 'package:fitpulse_app/app/widgets/header.dart';
+import 'package:fitpulse_app/app/screens/login/index.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +19,43 @@ abstract class AppRouter extends StatelessWidget {
 
   // Global routes for the application
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
+      ShellRoute(
+        builder: (context, state, child) {
+          return Scaffold(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            appBar: Header(hide: true),
+            body: ScrollConfiguration(
+              behavior: const ScrollBehavior().copyWith(overscroll: false),
+              child: child,
+            ),
+            bottomNavigationBar: const Footer(hide: true),
+          );
+        },
+        routes: [
+          GoRoute(
+            path: '/login',
+            name: 'login.index',
+            pageBuilder: (context, state) {
+              currentRouteWidget = const LoginIndex();
+              return NoTransitionPage(
+                child: currentRouteWidget,
+              );
+            },
+          ),
+          GoRoute(
+            path: '/register',
+            name: 'register.index',
+            pageBuilder: (context, state) {
+              currentRouteWidget = const RegisterIndex();
+              return NoTransitionPage(
+                child: currentRouteWidget,
+              );
+            },
+          ),
+        ],
+      ),
       ShellRoute(
         builder: (context, state, child) {
           return Scaffold(
@@ -34,16 +71,6 @@ abstract class AppRouter extends StatelessWidget {
         routes: [
           GoRoute(
             path: '/',
-            name: 'programme.index',
-            pageBuilder: (context, state) {
-              currentRouteWidget = const ProgrammeIndex();
-              return NoTransitionPage(
-                child: currentRouteWidget,
-              );
-            },
-          ),
-          GoRoute(
-            path: '/seance',
             name: 'seance.index',
             pageBuilder: (context, state) {
               currentRouteWidget = const SeanceIndex();
@@ -51,12 +78,22 @@ abstract class AppRouter extends StatelessWidget {
                 child: currentRouteWidget,
               );
             },
+          ),
+          GoRoute(
+            path: '/exercice',
+            name: 'exercice.index',
+            pageBuilder: (context, state) {
+              currentRouteWidget = const ExerciceIndex();
+              return NoTransitionPage(
+                child: currentRouteWidget,
+              );
+            },
             routes: [
               GoRoute(
                 path: '/create',
-                name: 'seance.create',
+                name: 'exercice.create',
                 pageBuilder: (context, state) {
-                  currentRouteWidget = const SeanceCreate();
+                  currentRouteWidget = const ExerciceCreate();
                   return NoTransitionPage(
                     child: currentRouteWidget,
                   );
@@ -100,5 +137,4 @@ abstract class AppRouter extends StatelessWidget {
     ],
   );
 }
-
 

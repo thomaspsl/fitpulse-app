@@ -1,5 +1,6 @@
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -64,6 +65,10 @@ class _ProfileIndexState extends State<ProfileIndex> {
                       );
                     },
                     child: const Text('Choisir une couleur'),
+                  ),
+                  TextButton(
+                    onPressed: () => GoRouter.of(context).pushReplacementNamed('login.index'),
+                    child: const Text('Se déconnecter'),
                   ),
                 ],
               ),
