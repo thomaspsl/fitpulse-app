@@ -6,7 +6,7 @@ import 'package:fitpulse_app/data/models/seance.dart';
 import 'app.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  /*WidgetsFlutterBinding.ensureInitialized();
 
   // Initialisation de la base de données et test des fonctionnalités
   final seanceService = SeanceService();
@@ -22,7 +22,7 @@ void main() async {
 
   // Lire toutes les séances pour vérifier l'insertion
   final seances = await seanceService.getSeances();
-  print('Séances après insertion : $seances');
+  print('Séances après insertion : $seances');*/
 
   runApp(
     MultiProvider(
