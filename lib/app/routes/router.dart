@@ -1,12 +1,12 @@
-import 'package:fitpulse_app/presentation/screens/plannifieur/index.dart';
-import 'package:fitpulse_app/presentation/screens/profile/index.dart';
-import 'package:fitpulse_app/presentation/screens/programme/index.dart';
-import 'package:fitpulse_app/presentation/screens/planning/index.dart';
-import 'package:fitpulse_app/presentation/screens/seance/create.dart';
-import 'package:fitpulse_app/presentation/screens/seance/index.dart';
-import 'package:fitpulse_app/presentation/widgets/transition.dart';
-import 'package:fitpulse_app/presentation/widgets/footer.dart';
-import 'package:fitpulse_app/presentation/widgets/header.dart';
+import 'package:fitpulse_app/app/screens/plannifieur/index.dart';
+import 'package:fitpulse_app/app/screens/programme/index.dart';
+import 'package:fitpulse_app/app/screens/planning/index.dart';
+import 'package:fitpulse_app/app/screens/profile/index.dart';
+import 'package:fitpulse_app/app/screens/seance/create.dart';
+import 'package:fitpulse_app/app/screens/seance/index.dart';
+import 'package:fitpulse_app/app/widgets/transition.dart';
+import 'package:fitpulse_app/app/widgets/footer.dart';
+import 'package:fitpulse_app/app/widgets/header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 

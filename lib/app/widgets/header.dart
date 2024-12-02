@@ -1,6 +1,8 @@
-import 'package:fitpulse_app/presentation/screens/profile/index.dart';
+import 'package:fitpulse_app/app/widgets/svg_color_mapper.dart';
+import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
@@ -11,43 +13,39 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    var color = Provider.of<ThemeProvider>(context).color;
+
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       centerTitle: true,
 
-      //Left part
-      /*leading: GestureDetector(
-        onTap: () => {},
-        child: Container(),
-      ),*/
-
-      //Center part
+      // Center part
       title: GestureDetector(
         onTap: () => GoRouter.of(context).goNamed('programme.index'),
         child: Container(
           padding: const EdgeInsets.only(top: 5),
-          child: SvgPicture.asset(
-            'lib/assets/images/logo.svg',
-            semanticsLabel: 'FitPulse Logo',
-            height: 30,
-          ),
+          child: SvgPicture(
+            SvgAssetLoader(
+                'lib/assets/images/logo.svg',
+              colorMapper: SvgColorMapper(svgColor: color)
+            )
+          )
         ),
-
       ),
 
-      //Right part
+      // Right part
       actions: [
         Container(
           padding: const EdgeInsets.only(top: 11, right: 20, bottom: 7),
           child: GestureDetector(
-            onTap: () => {},
+            onTap: () => context.goNamed('profile.index'),
             child: Container(
               padding: const EdgeInsets.only(bottom: 2),
               child: Icon(
                 Icons.circle,
-                color: Theme.of(context).primaryColor,
-                size: 32,
+                color: color,
+                size: 40,
               ),
             ),
           ),

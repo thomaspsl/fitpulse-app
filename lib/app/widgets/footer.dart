@@ -1,5 +1,6 @@
-import 'package:fitpulse_app/presentation/routes/theme.dart';
+import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class Footer extends StatefulWidget {
@@ -23,6 +24,8 @@ class ScaffoldWithNavBarTabItem extends BottomNavigationBarItem {
 class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
+    var color = Provider.of<ThemeProvider>(context).color;
+
     // List of routes
     List<ScaffoldWithNavBarTabItem> tabs = [
       const ScaffoldWithNavBarTabItem(
@@ -40,8 +43,8 @@ class _FooterState extends State<Footer> {
       ScaffoldWithNavBarTabItem(
         url: '/seance/create',
         icon: Container(
-          decoration: const BoxDecoration(
-            color: AppColors.blueSea,
+          decoration: BoxDecoration(
+            color: Theme.of(context).indicatorColor,
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -51,8 +54,8 @@ class _FooterState extends State<Footer> {
           ),
         ),
         activeIcon: Container(
-          decoration: const BoxDecoration(
-            color: AppColors.blueSea,
+          decoration: BoxDecoration(
+            color: color,
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -96,7 +99,7 @@ class _FooterState extends State<Footer> {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      selectedItemColor: Theme.of(context).primaryColor,
+      selectedItemColor: color,
       unselectedItemColor: Theme.of(context).indicatorColor,
       type: BottomNavigationBarType.fixed,
       currentIndex: selectedIndex == -1 ? 0 : selectedIndex,

@@ -1,4 +1,3 @@
-// lib/transitions.dart
 import 'package:flutter/material.dart';
 
 Widget bookTransition(
