@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProgrammeIndex extends StatelessWidget {
-  const ProgrammeIndex({super.key});
+class ExerciceCreate extends StatelessWidget {
+  const ExerciceCreate({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,12 +10,12 @@ class ProgrammeIndex extends StatelessWidget {
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.all(25),
-      child: SingleChildScrollView(
+      child: const SingleChildScrollView(
         child: Column(
           children: [
             Center(
               child: Text(
-                'Accueil / Programmes',
+                'Séance create',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.normal,

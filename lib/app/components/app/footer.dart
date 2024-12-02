@@ -4,26 +4,21 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class Footer extends StatefulWidget {
-  const Footer({super.key});
+  final bool hide;
+
+  const Footer({super.key, this.hide = false});
 
   @override
   State<Footer> createState() => _FooterState();
 }
 
-class ScaffoldWithNavBarTabItem extends BottomNavigationBarItem {
-  final String url;
-
-  const ScaffoldWithNavBarTabItem({
-    required this.url,
-    required super.icon,
-    required Widget super.activeIcon,
-    super.label,
-  });
-}
-
 class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
+    if (widget.hide) {
+      return SizedBox(height: 0);
+    }
+
     var color = Provider.of<ThemeProvider>(context).color;
 
     // List of routes
@@ -35,16 +30,16 @@ class _FooterState extends State<Footer> {
         label: 'Accueil',
       ),
       const ScaffoldWithNavBarTabItem(
-        url: '/seance',
+        url: '/exercice',
         icon: Icon(Icons.sports_football_outlined),
         activeIcon: Icon(Icons.sports_football),
-        label: 'Séance',
+        label: 'Exercices',
       ),
       ScaffoldWithNavBarTabItem(
-        url: '/seance/create',
+        url: '/exercice/create',
         icon: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).indicatorColor,
+            color: Theme.of(context).cardColor,
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -100,11 +95,22 @@ class _FooterState extends State<Footer> {
       showUnselectedLabels: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       selectedItemColor: color,
-      unselectedItemColor: Theme.of(context).indicatorColor,
+      unselectedItemColor: Theme.of(context).cardColor,
       type: BottomNavigationBarType.fixed,
       currentIndex: selectedIndex == -1 ? 0 : selectedIndex,
       onTap: (index) => onItemTapped(index, selectedIndex),
       items: tabs,
     );
   }
+}
+
+class ScaffoldWithNavBarTabItem extends BottomNavigationBarItem {
+  final String url;
+
+  const ScaffoldWithNavBarTabItem({
+    required this.url,
+    required super.icon,
+    required Widget super.activeIcon,
+    super.label,
+  });
 }

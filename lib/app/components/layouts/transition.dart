@@ -6,7 +6,8 @@ Widget bookTransition(
     Animation<double> secondaryAnimation,
     Widget child,
     Widget exit,
-    double x) {
+    double x
+) {
   return Stack(
     children: <Widget>[
       SlideTransition(
