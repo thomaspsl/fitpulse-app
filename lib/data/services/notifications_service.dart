@@ -92,7 +92,7 @@ class NotificationsService {
     const NotificationDetails notificationDetails = NotificationDetails(
       android: androidDetails,
     );
-
+    
     await _localNotificationsPlugin.show(
       0, // ID unique de la notification
       title,
