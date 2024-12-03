@@ -1,26 +1,27 @@
-import 'dart:async';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
+import 'dart:async';
 
 class DBHelper {
   static final DBHelper instance = DBHelper._init();
   static Database? _database;
 
+  factory DBHelper() {
+    return instance;
+  }
+
   DBHelper._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('fitpulse.db');
+    _database = await _initDB();
     return _database!;
   }
 
-  Future<Database> _initDB(String fileName) async {
-    // Utiliser le répertoire de documents
-    final directory = await getApplicationDocumentsDirectory();
-    final path = join(directory.path, fileName);
+  Future<Database> _initDB() async {
+    String path = join(await getDatabasesPath(), 'fitpulse.db');
 
-    print('Chemin de la base de données : $path'); // Affiche le chemin pour vérifier où est stockée la base
+    print('Chemin de la base de données : $path');
 
     return await openDatabase(
       path,
@@ -31,14 +32,52 @@ class DBHelper {
 
   Future _createDB(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE seances (
+      CREATE TABLE Session (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom TEXT NOT NULL,
+        name TEXT NOT NULL,
         type TEXT NOT NULL,
+        recovery INTEGER
+    )''');
+
+    await db.execute('''
+      CREATE TABLE Exercise (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      is_time INTEGER NOT NULL,
+      time INTEGER,
+      nb INTEGER,
+      sessions INTEGER NOT NULL,
+      recovery INTEGER NOT NULL
+    )''');
+
+    await db.execute('''
+      CREATE TABLE SessionExercise (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        exercise_id INTEGER NOT NULL,
+        session_id INTEGER NOT NULL,
+        FOREIGN KEY (exercise_id) REFERENCES Exercise(id),
+        FOREIGN KEY (session_id) REFERENCES Session(id)
+    )''');
+
+    await db.execute('''
+      CREATE TABLE Comments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        content TEXT NOT NULL,
+        session_id INTEGER,
+        exercise_id INTEGER,
+        FOREIGN KEY (session_id) REFERENCES Session(id),
+        FOREIGN KEY (exercise_id) REFERENCES Exercise(id)
+    )''');
+
+    await db.execute('''
+      CREATE TABLE Date (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        session_id INTEGER NOT NULL,
         date TEXT NOT NULL,
-        notification INTEGER NOT NULL
-      )
-    ''');
+        recurring INTEGER NOT NULL,
+        recurrence TEXT,
+        FOREIGN KEY (session_id) REFERENCES Session(id)
+    )''');
   }
 
   Future close() async {

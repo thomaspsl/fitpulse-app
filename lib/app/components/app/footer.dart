@@ -30,42 +30,10 @@ class _FooterState extends State<Footer> {
         label: 'Accueil',
       ),
       const ScaffoldWithNavBarTabItem(
-        url: '/exercice',
+        url: '/exercise',
         icon: Icon(Icons.sports_football_outlined),
         activeIcon: Icon(Icons.sports_football),
         label: 'Exercices',
-      ),
-      ScaffoldWithNavBarTabItem(
-        url: '/exercice/create',
-        icon: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            Icons.add_rounded,
-            size: 35,
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
-        ),
-        activeIcon: Container(
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            Icons.add_rounded,
-            size: 35,
-            color: Theme.of(context).scaffoldBackgroundColor
-          ),
-        ),
-        label: '',
-      ),
-      const ScaffoldWithNavBarTabItem(
-        url: '/plannifieur',
-        icon: Icon(Icons.task_outlined),
-        activeIcon: Icon(Icons.task),
-        label: 'Plannifieur',
       ),
       const ScaffoldWithNavBarTabItem(
         url: '/planning',
@@ -73,6 +41,13 @@ class _FooterState extends State<Footer> {
         activeIcon: Icon(Icons.calendar_today),
         label: 'Planning',
       ),
+      const ScaffoldWithNavBarTabItem(
+        url: '/history',
+        icon: Icon(Icons.task_outlined),
+        activeIcon: Icon(Icons.task),
+        label: 'Historique',
+      ),
+
     ];
 
     // On Selection
@@ -111,6 +86,6 @@ class ScaffoldWithNavBarTabItem extends BottomNavigationBarItem {
     required this.url,
     required super.icon,
     required Widget super.activeIcon,
-    super.label,
+    super.label
   });
 }

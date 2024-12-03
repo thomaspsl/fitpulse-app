@@ -1,5 +1,6 @@
-import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:fitpulse_app/data/providers/theme.dart';
+import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,9 @@ class ProfileIndex extends StatefulWidget {
 }
 
 class _ProfileIndexState extends State<ProfileIndex> {
-  void setTheme(Color color) {
+  void updateTheme(Color color) {
     var themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    themeProvider.setTheme(color);
+    themeProvider.update(color);
   }
 
   @override
@@ -25,22 +26,26 @@ class _ProfileIndexState extends State<ProfileIndex> {
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Text(
+                'Votre profile : ',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Center(
               child: Column(
                 children: [
-                  const Text(
-                    'Profile',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
+                  ElevatedButton(
+                    onPressed: () => {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -49,7 +54,7 @@ class _ProfileIndexState extends State<ProfileIndex> {
                             content: SingleChildScrollView(
                               child: ColorPicker(
                                 pickerColor: color,
-                                onColorChanged: setTheme,
+                                onColorChanged: updateTheme,
                               ),
                             ),
                             actions: <Widget>[
@@ -62,13 +67,32 @@ class _ProfileIndexState extends State<ProfileIndex> {
                             ],
                           );
                         },
-                      );
-                    },
-                    child: const Text('Choisir une couleur'),
+                      )
+                    }, //_googleLogin
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: color,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 25),
+                    ),
+                    child: const Text(
+                      'Choisir une couleur',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
-                  TextButton(
-                    onPressed: () => GoRouter.of(context).pushReplacementNamed('login.index'),
-                    child: const Text('Se déconnecter'),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () => GoRouter.of(context).pushReplacementNamed('login.index'), //_googleLogin
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.redLava,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 25),
+                    ),
+                    child: const Text(
+                      'Se déconnecter',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ],
               ),

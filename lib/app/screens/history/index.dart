@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ExerciceCreate extends StatelessWidget {
-  const ExerciceCreate({super.key});
+class HistoryIndex extends StatelessWidget {
+  const HistoryIndex({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,16 +9,18 @@ class ExerciceCreate extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.all(25),
-      child: const SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15),
               child: Text(
-                'Séance create',
+                'Historique :',
                 style: TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

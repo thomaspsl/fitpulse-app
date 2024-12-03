@@ -1,13 +1,12 @@
 import 'package:fitpulse_app/app/components/layouts/transition.dart';
-import 'package:fitpulse_app/app/screens/plannifieur/index.dart';
-import 'package:fitpulse_app/app/screens/exercice/create.dart';
-import 'package:fitpulse_app/app/screens/exercice/index.dart';
+import 'package:fitpulse_app/app/screens/exercise/index.dart';
+import 'package:fitpulse_app/app/screens/history/index.dart';
 import 'package:fitpulse_app/app/screens/planning/index.dart';
 import 'package:fitpulse_app/app/screens/register/index.dart';
 import 'package:fitpulse_app/app/components/app/footer.dart';
 import 'package:fitpulse_app/app/components/app/header.dart';
 import 'package:fitpulse_app/app/screens/profile/index.dart';
-import 'package:fitpulse_app/app/screens/seance/index.dart';
+import 'package:fitpulse_app/app/screens/session/index.dart';
 import 'package:fitpulse_app/app/screens/login/index.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -71,41 +70,19 @@ abstract class AppRouter extends StatelessWidget {
         routes: [
           GoRoute(
             path: '/',
-            name: 'seance.index',
+            name: 'session.index',
             pageBuilder: (context, state) {
-              currentRouteWidget = const SeanceIndex();
+              currentRouteWidget = const SessionIndex();
               return NoTransitionPage(
                 child: currentRouteWidget,
               );
             },
           ),
           GoRoute(
-            path: '/exercice',
-            name: 'exercice.index',
+            path: '/exercise',
+            name: 'exercise.index',
             pageBuilder: (context, state) {
-              currentRouteWidget = const ExerciceIndex();
-              return NoTransitionPage(
-                child: currentRouteWidget,
-              );
-            },
-            routes: [
-              GoRoute(
-                path: '/create',
-                name: 'exercice.create',
-                pageBuilder: (context, state) {
-                  currentRouteWidget = const ExerciceCreate();
-                  return NoTransitionPage(
-                    child: currentRouteWidget,
-                  );
-                },
-              ),
-            ]
-          ),
-          GoRoute(
-            path: '/plannifieur',
-            name: 'plannifieur.index',
-            pageBuilder: (context, state) {
-              currentRouteWidget = const PlannifieurIndex();
+              currentRouteWidget = const ExerciseIndex();
               return NoTransitionPage(
                 child: currentRouteWidget,
               );
@@ -122,13 +99,22 @@ abstract class AppRouter extends StatelessWidget {
             },
           ),
           GoRoute(
+            path: '/history',
+            name: 'history.index',
+            pageBuilder: (context, state) {
+              currentRouteWidget = const HistoryIndex();
+              return NoTransitionPage(
+                child: currentRouteWidget,
+              );
+            },
+          ),
+          GoRoute(
             path: '/profile',
             name: 'profile.index',
             pageBuilder: (context, state) => CustomTransitionPage(
               transitionsBuilder: (context, animation, secondaryAnimation,
                   child) =>
-                  bookTransition(context, animation, secondaryAnimation, child,
-                      currentRouteWidget, 1),
+                  bookTransition(context, animation, secondaryAnimation, child, currentRouteWidget, 1),
               child: const ProfileIndex(),
             ),
           ),

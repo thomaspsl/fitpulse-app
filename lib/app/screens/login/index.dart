@@ -96,7 +96,7 @@ class _LoginIndexState extends State<LoginIndex> {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () => GoRouter.of(context)
-                  .pushReplacementNamed('seance.index'), //_googleLogin
+                  .pushReplacementNamed('session.index'), //_googleLogin
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Theme.of(context).primaryColor,
@@ -108,7 +108,7 @@ class _LoginIndexState extends State<LoginIndex> {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            const SizedBox(height: 20),
+            /*const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => {}, //_googleLogin
               style: ElevatedButton.styleFrom(
@@ -121,7 +121,7 @@ class _LoginIndexState extends State<LoginIndex> {
                 'Se connecter avec Google',
                 style: TextStyle(fontSize: 16),
               ),
-            ),
+            ),*/
             const SizedBox(height: 20),
             const Text('Vous découvrez FitPulse ?'),
             TextButton(

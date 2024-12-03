@@ -91,8 +91,7 @@ class _RegisterIndexState extends State<RegisterIndex> {
             ),
             const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () => GoRouter.of(context)
-                  .pushReplacementNamed('seance.index'), //_googleLogin
+              onPressed: () => GoRouter.of(context).pushReplacementNamed('session.index'), //_googleLogin
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Theme.of(context).primaryColor,
@@ -104,7 +103,7 @@ class _RegisterIndexState extends State<RegisterIndex> {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            const SizedBox(height: 20),
+            /*const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => {}, //_googleLogin
               style: ElevatedButton.styleFrom(
@@ -117,7 +116,7 @@ class _RegisterIndexState extends State<RegisterIndex> {
                 'S\'inscrire avec Google',
                 style: TextStyle(fontSize: 16),
               ),
-            ),
+            ),*/
             const SizedBox(height: 20),
             const Text('Déjà un compte ?'),
             TextButton(

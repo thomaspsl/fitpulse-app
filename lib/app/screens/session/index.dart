@@ -2,8 +2,8 @@ import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SeanceIndex extends StatelessWidget {
-  const SeanceIndex({super.key});
+class SessionIndex extends StatelessWidget {
+  const SessionIndex({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +11,19 @@ class SeanceIndex extends StatelessWidget {
 
     final sections = [
       {
-        'title': 'Séance de muscu :',
+        'title': 'Vos séances :',
+        'items': List.generate(6, (index) => 'Séance n°$index'),
+      },
+      {
+        'title': 'Séances de muscu :',
         'items': List.generate(8, (index) => 'Séance n°$index'),
       },
       {
-        'title': 'Séance de cadio :',
+        'title': 'Séances de cadio :',
         'items': List.generate(10, (index) => 'Séance n°$index'),
       },
       {
-        'title': 'Séance de ??? :',
+        'title': 'Séances de ??? :',
         'items': List.generate(6, (index) => 'Séance n°$index'),
       },
     ];
@@ -31,20 +35,19 @@ class SeanceIndex extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: sections.map((section) {
             final title = section['title'] as String;
             final items = section['items'] as List<String>;
 
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class UserProvider with ChangeNotifier {
   dynamic _user;
+
   dynamic get user => _user;
 
-  void setUser(dynamic user) {
+  Future<void> update(dynamic user) async {
     _user = user;
     notifyListeners();
   }
