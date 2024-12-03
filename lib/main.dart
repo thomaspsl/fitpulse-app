@@ -1,3 +1,4 @@
+import 'package:fitpulse_app/data/models/user.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/providers/user.dart';
 import 'package:fitpulse_app/data/db/db_helper.dart';
@@ -10,6 +11,7 @@ void main() async {
 
   final dbHelper = DBHelper();
   final db = await dbHelper.database;
+  //await dbHelper.deleteDatabase();
 
   /*// Initialisation de la base de données et test des fonctionnalités
   final seanceService = SeanceService();
@@ -26,6 +28,28 @@ void main() async {
   // Lire toutes les séances pour vérifier l'insertion
   final seances = await seanceService.getSeances();
   print('Séances après insertion : $seances');*/
+
+  /*final userProvider = UserProvider();
+
+// Ajouter un utilisateur
+  final newUser = User(
+    name: 'John Doe',
+    email: 'johndoe@example.com',
+    password: 'password123',
+    color: Color(0xFF0000FF),
+  );
+  await userProvider.store(newUser);
+
+// Ajouter un commentaire
+  await userProvider.addCommentForUser(
+    userId: newUser.id!,
+    content: 'Ceci est un commentaire pour John Doe.',
+  );
+
+// Vérifier les commentaires de l'utilisateur
+  final comments = await userProvider.getCommentsForUser(newUser.id!);
+  print('Commentaires pour l\'utilisateur : $comments');*/
+
 
   runApp(
     MultiProvider(

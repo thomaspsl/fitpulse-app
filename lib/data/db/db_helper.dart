@@ -65,8 +65,10 @@ class DBHelper {
         content TEXT NOT NULL,
         session_id INTEGER,
         exercise_id INTEGER,
+        user_id INTEGER,
         FOREIGN KEY (session_id) REFERENCES Session(id),
-        FOREIGN KEY (exercise_id) REFERENCES Exercise(id)
+        FOREIGN KEY (exercise_id) REFERENCES Exercise(id),
+        FOREIGN KEY (user_id) REFERENCES User(id)
     )''');
 
     await db.execute('''
@@ -78,10 +80,32 @@ class DBHelper {
         recurrence TEXT,
         FOREIGN KEY (session_id) REFERENCES Session(id)
     )''');
+
+    await db.execute('''
+      CREATE TABLE User (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        color INTEGER NOT NULL,
+        session_id INTEGER,
+        exercise_id INTEGER,
+        comments_id INTEGER,
+        FOREIGN KEY (session_id) REFERENCES Session(id),
+        FOREIGN KEY (exercise_id) REFERENCES Exercise(id),
+        FOREIGN KEY (comments_id) REFERENCES Comments(id)
+    )''');
   }
 
   Future close() async {
     final db = await instance.database;
     db.close();
   }
+
+  Future<void> deleteDatabase() async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'fitpulse.db');
+    await databaseFactory.deleteDatabase(path);
+  }
+
 }
