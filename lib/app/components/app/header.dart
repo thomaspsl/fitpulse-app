@@ -30,60 +30,68 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     if (currentRoute == '/') {
       bottomSheetContent = const SessionCreate();
     } else if (currentRoute == '/exercise') {
-      bottomSheetContent = const ExerciseCreate ();
+      bottomSheetContent = const ExerciseCreate();
     }
 
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      surfaceTintColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
 
       // Left part
       leading: bottomSheetContent != null
           ? Container(
-        padding: const EdgeInsets.only(top: 7, left: 10),
-        child: GestureDetector(
-          onTap: () => {
-            showModalBottomSheet(
-              context: context,
-              builder: (BuildContext context) => bottomSheetContent!,
+              padding: const EdgeInsets.only(top: 7, left: 10),
+              child: GestureDetector(
+                onTap: () => {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) => bottomSheetContent!,
+                  )
+                },
+                child: Icon(
+                  Icons.add_outlined,
+                  color: color,
+                  size: 35,
+                ),
+              ),
             )
-          },
-          child: Icon(
-            Icons.add_outlined,
-            color: color,
-            size: 35,
-          ),
-        ),
-      )
           : null,
 
       // Center part
       title: GestureDetector(
         onTap: () => GoRouter.of(context).goNamed('session.index'),
         child: Container(
-            padding: const EdgeInsets.only(top: 5),
-            child: SvgPicture(SvgAssetLoader('lib/assets/images/logo.svg',
-                colorMapper: SvgColorMapper(svgColor: color)))),
-      ),
-
-      // Right part
-      actions: [
-        Container(
-          padding: const EdgeInsets.only(top: 11, right: 20, bottom: 7),
-          child: GestureDetector(
-            onTap: () => context.goNamed('profile.index'),
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 2),
-              child: Icon(
-                Icons.account_circle_rounded,
-                color: color,
-                size: 40,
-              ),
+          padding: const EdgeInsets.only(top: 5),
+          child: SvgPicture(
+            SvgAssetLoader(
+              'lib/assets/images/logo.svg',
+              colorMapper: SvgColorMapper(svgColor: color),
             ),
           ),
-        )
-      ],
+        ),
+      ),
+
+      // Right part (conditionally rendered)
+      actions: currentRoute != '/profile'
+          ? [
+              Container(
+                padding: const EdgeInsets.only(top: 11, right: 20, bottom: 7),
+                child: GestureDetector(
+                  onTap: () => context.goNamed('profile.index'),
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 2),
+                    child: Icon(
+                      Icons.account_circle_rounded,
+                      color: color,
+                      size: 40,
+                    ),
+                  ),
+                ),
+              )
+            ]
+          : [],
     );
   }
 }

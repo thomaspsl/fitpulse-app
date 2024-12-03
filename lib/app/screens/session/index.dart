@@ -11,19 +11,19 @@ class SessionIndex extends StatelessWidget {
 
     final sections = [
       {
-        'title': 'Vos séances :',
+        'title': 'Vos séances',
         'items': List.generate(6, (index) => 'Séance n°$index'),
       },
       {
-        'title': 'Séances de muscu :',
+        'title': 'Séances de muscu',
         'items': List.generate(8, (index) => 'Séance n°$index'),
       },
       {
-        'title': 'Séances de cadio :',
+        'title': 'Séances de cadio',
         'items': List.generate(10, (index) => 'Séance n°$index'),
       },
       {
-        'title': 'Séances de ??? :',
+        'title': 'Séances de ???',
         'items': List.generate(6, (index) => 'Séance n°$index'),
       },
     ];

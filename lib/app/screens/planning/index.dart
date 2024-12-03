@@ -35,7 +35,7 @@ class _PlanningIndexState extends State<PlanningIndex> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: Text(
-                'Suivi de vos séances : ',
+                'Suivi de vos séances',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

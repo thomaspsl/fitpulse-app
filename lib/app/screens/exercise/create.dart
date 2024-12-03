@@ -1,3 +1,7 @@
+import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/components/widgets/toggle.dart';
+import 'package:fitpulse_app/data/providers/theme.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseCreate extends StatelessWidget {
@@ -5,15 +9,54 @@ class ExerciseCreate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.7,
-      child: Center(
-        child: Column(
-          children: const [
+    var color = Provider.of<ThemeProvider>(context).color;
 
-            Text('Ajout d\'un exercice'),
-          ],
-        ),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Center(
+            child: Text(
+              'Ajouter un exercice',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Input(
+            label: 'Nom de l\'exercice',
+            placeholder: "Planche",
+          ),
+          const SizedBox(height: 10),
+          Toggle(
+            label: "Type :",
+            options: const ["Temps", "Répétitions"],
+            initialSelectedOption: null,
+            onOptionSelected: (selectedOption) {
+              print("Option sélectionnée : $selectedOption");
+            },
+          ),
+          const SizedBox(height: 20),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => {},
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: color,
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              ),
+              child: const Text(
+                'Valider l\'exercice',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
