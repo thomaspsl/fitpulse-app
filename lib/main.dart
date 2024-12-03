@@ -1,13 +1,16 @@
 import 'package:fitpulse_app/data/models/user.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/providers/user.dart';
-import 'package:fitpulse_app/data/db/db_helper.dart';
+import 'package:fitpulse_app/data/services/db_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
 
   final dbHelper = DBHelper();
   final db = await dbHelper.database;

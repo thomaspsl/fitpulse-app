@@ -1,6 +1,8 @@
 import 'package:fitpulse_app/app/components/widgets/input.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitpulse_app/data/services/auth_service.dart';
 
 class LoginIndex extends StatefulWidget {
   const LoginIndex({super.key});
@@ -9,7 +11,9 @@ class LoginIndex extends StatefulWidget {
   State<LoginIndex> createState() => _LoginIndexState();
 }
 
+
 class _LoginIndexState extends State<LoginIndex> {
+  final AuthService _authService = AuthService();
   @override
   void initState() {
     super.initState();
@@ -64,6 +68,22 @@ class _LoginIndexState extends State<LoginIndex> {
                 'Valider la connexion',
                 style: TextStyle(fontSize: 16),
               ),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                try {
+                  await _authService.signInWithGoogle();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Connexion réussie !')),
+                  );
+                  GoRouter.of(context).pushReplacementNamed('session.index');
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Erreur de connexion : $e')),
+                  );
+                }
+              },
+              child: Text('Se connecter avec Google'),
             ),
             const SizedBox(height: 20),
             const Text('Vous découvrez FitPulse ?'),

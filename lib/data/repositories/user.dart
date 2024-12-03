@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/data/db/db_helper.dart';
+import 'package:fitpulse_app/data/services/db_helper.dart';
 import 'package:fitpulse_app/data/models/user.dart';
 
 class UserRepository {

@@ -1,6 +1,6 @@
 import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:fitpulse_app/data/models/session.dart';
-import 'package:fitpulse_app/data/db/db_helper.dart';
+import 'package:fitpulse_app/data/services/db_helper.dart';
 import 'package:fitpulse_app/data/models/date.dart';
 
 class DateRepository {
