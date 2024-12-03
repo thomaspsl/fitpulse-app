@@ -113,8 +113,9 @@ abstract class AppRouter extends StatelessWidget {
             name: 'profile.index',
             pageBuilder: (context, state) => CustomTransitionPage(
               transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) =>
-                  bookTransition(context, animation, secondaryAnimation, child, currentRouteWidget, 1),
+                      child) =>
+                  bookTransition(context, animation, secondaryAnimation, child,
+                      currentRouteWidget, 1),
               child: const ProfileIndex(),
             ),
           ),
@@ -123,4 +124,3 @@ abstract class AppRouter extends StatelessWidget {
     ],
   );
 }
-

@@ -11,19 +11,19 @@ class ExerciseIndex extends StatelessWidget {
 
     final sections = [
       {
-        'title': 'Vos exercices :',
+        'title': 'Vos exercices',
         'items': List.generate(6, (index) => 'Exo n°$index'),
       },
       {
-        'title': 'Exercices de muscu :',
+        'title': 'Exercices de muscu',
         'items': List.generate(8, (index) => 'Exo n°$index'),
       },
       {
-        'title': 'Exercices de cadio :',
+        'title': 'Exercices de cadio',
         'items': List.generate(10, (index) => 'Exo n°$index'),
       },
       {
-        'title': 'Exercices de ??? :',
+        'title': 'Exercices de ???',
         'items': List.generate(10, (index) => 'Exo n°$index'),
       },
     ];

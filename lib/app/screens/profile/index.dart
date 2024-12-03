@@ -26,75 +26,65 @@ class _ProfileIndexState extends State<ProfileIndex> {
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: Text(
-                'Votre profile : ',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            Icon(
+              Icons.account_circle_rounded,
+              color: color,
+              size: 100,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Choisir une couleur'),
+                      content: SingleChildScrollView(
+                        child: ColorPicker(
+                          pickerColor: color,
+                          onColorChanged: updateTheme,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Valider'),
+                        ),
+                      ],
+                    );
+                  },
+                )
+              }, //_googleLogin
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: color,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              ),
+              child: const Text(
+                'Choisir une couleur',
+                style: TextStyle(fontSize: 16),
               ),
             ),
-            Center(
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () => {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Choisir une couleur'),
-                            content: SingleChildScrollView(
-                              child: ColorPicker(
-                                pickerColor: color,
-                                onColorChanged: updateTheme,
-                              ),
-                            ),
-                            actions: <Widget>[
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('Valider'),
-                              ),
-                            ],
-                          );
-                        },
-                      )
-                    }, //_googleLogin
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: color,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 25),
-                    ),
-                    child: const Text(
-                      'Choisir une couleur',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () => GoRouter.of(context).pushReplacementNamed('login.index'), //_googleLogin
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: AppColors.redLava,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 25),
-                    ),
-                    child: const Text(
-                      'Se déconnecter',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => GoRouter.of(context)
+                  .pushReplacementNamed('login.index'), //_googleLogin
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: AppColors.redLava,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              ),
+              child: const Text(
+                'Se déconnecter',
+                style: TextStyle(fontSize: 16),
               ),
             ),
           ],

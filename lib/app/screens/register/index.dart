@@ -1,3 +1,4 @@
+import 'package:fitpulse_app/app/components/widgets/input.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _RegisterIndexState extends State<RegisterIndex> {
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,53 +42,20 @@ class _RegisterIndexState extends State<RegisterIndex> {
               ),
             ),
             const SizedBox(height: 30),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: TextField(
-                // controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Mail',
-                  labelStyle: const TextStyle(color: Color(0xFF777777)),
-                  filled: true,
-                  fillColor: const Color(0xFFEBE9E9),
-                  border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-                ),
-                style: const TextStyle(color: Colors.black),
-              ),
+            Input(
+              label: "Pseudo",
+              placeholder: "example",
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: TextField(
-                // controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Mot de passe',
-                  labelStyle: const TextStyle(color: Color(0xFF777777)),
-                  filled: true,
-                  fillColor: const Color(0xFFEBE9E9),
-                  border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-                ),
-                style: const TextStyle(color: Colors.black),
-              ),
+            Input(
+              label: "Mail",
+              placeholder: "example@domain.com",
+            ),
+            const SizedBox(height: 20),
+            Input(
+              label: "Mot de passe",
+              placeholder: "**********",
+              obscure: true,
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -103,25 +71,10 @@ class _RegisterIndexState extends State<RegisterIndex> {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            /*const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => {}, //_googleLogin
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Theme.of(context).indicatorColor,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              ),
-              child: const Text(
-                'S\'inscrire avec Google',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),*/
             const SizedBox(height: 20),
             const Text('Déjà un compte ?'),
             TextButton(
-              onPressed: () =>
-                  GoRouter.of(context).pushReplacementNamed('login.index'),
+              onPressed: () => GoRouter.of(context).pushReplacementNamed('login.index'),
               child: Text(
                 'Connectez-vous !',
                 style: TextStyle(
