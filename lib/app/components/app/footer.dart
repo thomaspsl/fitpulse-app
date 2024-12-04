@@ -19,7 +19,7 @@ class _FooterState extends State<Footer> {
       return SizedBox(height: 0);
     }
 
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
 
     // List of routes
     List<ScaffoldWithNavBarTabItem> tabs = [
@@ -54,13 +54,13 @@ class _FooterState extends State<Footer> {
     void onItemTapped(int index, int selectedIndex) {
       if (index != selectedIndex) {
         setState(() => selectedIndex = index);
-        context.go(tabs[index].url);
+        GoRouter.of(context).go(tabs[index].url);
       }
     }
 
     // Check the current index
     int selectedIndex = tabs.indexWhere(
-      (tab) => tab.url == GoRouterState.of(context).uri.toString(),
+      (tab) => tab.url == GoRouterState.of(context).matchedLocation,
     );
 
     return BottomNavigationBar(
@@ -69,7 +69,7 @@ class _FooterState extends State<Footer> {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      selectedItemColor: color,
+      selectedItemColor: theme.color,
       unselectedItemColor: Theme.of(context).cardColor,
       type: BottomNavigationBarType.fixed,
       currentIndex: selectedIndex == -1 ? 0 : selectedIndex,

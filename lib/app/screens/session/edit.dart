@@ -4,8 +4,10 @@ import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class SessionCreate extends StatelessWidget {
-  const SessionCreate({super.key});
+class SessionEdit extends StatelessWidget {
+  final String id;
+
+  const SessionEdit({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,9 @@ class SessionCreate extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Center(
+          Center(
             child: Text(
-              'Ajouter une séance',
+              'Modifier la séance : $id',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -35,7 +37,9 @@ class SessionCreate extends StatelessWidget {
           const SizedBox(height: 20),
           Center(
             child: ElevatedButton(
-              onPressed: () => {},
+              onPressed: () => {
+                // Action pour modifier la séance
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: AppColors.whiteTitanium,
                 backgroundColor: theme.color,
@@ -43,11 +47,11 @@ class SessionCreate extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               ),
               child: const Text(
-                'Valider la séance',
+                'Modifier la séance',
                 style: TextStyle(fontSize: 16),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

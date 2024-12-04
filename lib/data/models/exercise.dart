@@ -3,6 +3,7 @@ class Exercise {
   final Duration? time;
   final int? nb;
   final String name;
+  final String category;
   final bool isTime;
   final int sessions;
   final Duration recovery;
@@ -12,6 +13,7 @@ class Exercise {
     this.time,
     this.nb,
     required this.name,
+    required this.category,
     required this.isTime,
     required this.sessions,
     required this.recovery,
@@ -23,6 +25,7 @@ class Exercise {
       'time': time?.inSeconds,
       'nb': nb,
       'name': name,
+      'category': category,
       'is_time': isTime ? 1 : 0,
       'sessions': sessions,
       'recovery': recovery.inSeconds,
@@ -33,6 +36,7 @@ class Exercise {
     return Exercise(
       id: map['id'],
       name: map['name'],
+      category: map['category'],
       isTime: map['is_time'] == 1,
       time: map['time'] != null ? Duration(seconds: map['time']) : null,
       nb: map['nb'],
@@ -45,6 +49,7 @@ class Exercise {
     int? id,
     String? name,
     bool? isTime,
+    String? category,
     Duration? time,
     int? nb,
     int? sessions,
@@ -53,6 +58,7 @@ class Exercise {
     return Exercise(
       id: id ?? this.id,
       name: name ?? this.name,
+      category: category ?? this.category,
       isTime: isTime ?? this.isTime,
       time: time ?? this.time,
       nb: nb ?? this.nb,

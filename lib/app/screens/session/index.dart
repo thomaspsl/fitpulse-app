@@ -1,93 +1,147 @@
+import 'package:fitpulse_app/data/providers/session.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
-import 'package:flutter/material.dart';
+import 'package:fitpulse_app/app/config/colors.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class SessionIndex extends StatelessWidget {
   const SessionIndex({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
+    var sessions = Provider.of<SessionProvider>(context).sessions;
 
-    final sections = [
-      {
-        'title': 'Vos séances',
-        'items': List.generate(6, (index) => 'Séance n°$index'),
-      },
-      {
-        'title': 'Séances de muscu',
-        'items': List.generate(8, (index) => 'Séance n°$index'),
-      },
-      {
-        'title': 'Séances de cadio',
-        'items': List.generate(10, (index) => 'Séance n°$index'),
-      },
-      {
-        'title': 'Séances de ???',
-        'items': List.generate(6, (index) => 'Séance n°$index'),
-      },
-    ];
+    final Map<String, String> categoryTitles = {
+      'PERSO': 'Vos séances',
+      'MUSCU': 'Séances de muscu',
+      'CARDIO': 'Séances de cardio',
+      'AUTRES': 'Autres séances',
+    };
+
+    final Map<String, List<dynamic>> groupedSessions = {
+      'AUTRES': [],
+    };
+
+    for (var session in sessions) {
+      final category = session.category;
+      if (categoryTitles.containsKey(category)) {
+        if (!groupedSessions.containsKey(category)) {
+          groupedSessions[category] = [];
+        }
+        groupedSessions[category]!.add(session);
+      } else {
+        groupedSessions['AUTRES']!.add(session);
+      }
+    }
 
     return Container(
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: SingleChildScrollView(
-        child: Column(
-          children: sections.map((section) {
-            final title = section['title'] as String;
-            final items = section['items'] as List<String>;
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          child: Column(
+            children: groupedSessions.entries
+                .where((entry) => entry.value.isNotEmpty)
+                .map((entry) {
+              final categorySessions = entry.value;
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        categoryTitles[entry.key]!,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: items.length,
-                      itemBuilder: (context, itemIndex) {
-                        final itemName = items[itemIndex];
-                        return Container(
-                          margin: const EdgeInsets.only(right: 8.0),
-                          width: 150,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.0),
-                            gradient: LinearGradient(
-                              colors: [color.withOpacity(0.5), color],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              itemName,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      height: 150,
+                      child: ListView.separated(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categorySessions.length,
+                        itemBuilder: (context, index) {
+                          final session = categorySessions[index];
+                          return GestureDetector(
+                            onTap: () => GoRouter.of(context).pushNamed(
+                                'session.edit',
+                                pathParameters: {'id': "${session.id}"}),
+                            child: Container(
+                              width: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(
+                                  colors: [theme.color, theme.color.withOpacity(0.5)],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    session.type.toString().split('.').last,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: AppColors.whiteTitanium
+                                          .withOpacity(0.7),
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    session.name,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: AppColors.whiteTitanium,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Icon(
+                                    Icons.timer,
+                                    color: AppColors.whiteTitanium
+                                        .withOpacity(0.7),
+                                    size: 20,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    "Récup : ${session.recovery}s",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: AppColors.whiteTitanium
+                                          .withOpacity(0.7),
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(width: 8);
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }).toList(),
+                    const SizedBox(height: 15),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );

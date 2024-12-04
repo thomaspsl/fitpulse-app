@@ -1,4 +1,5 @@
 import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class _LoginIndexState extends State<LoginIndex> {
               child: Text(
                 "Connectez-vous à FitPulse",
                 style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  color: AppColors.blueSea,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -56,8 +57,8 @@ class _LoginIndexState extends State<LoginIndex> {
             ElevatedButton(
               onPressed: () => GoRouter.of(context).pushReplacementNamed('session.index'), //_googleLogin
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: AppColors.whiteTitanium,
+                backgroundColor: AppColors.blueSea,
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               ),
               child: const Text(
@@ -72,7 +73,7 @@ class _LoginIndexState extends State<LoginIndex> {
               child: Text(
                 'Inscrivez-vous',
                 style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  color: AppColors.blueSea,
                 ),
               ),
             ),

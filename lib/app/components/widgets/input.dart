@@ -24,7 +24,7 @@ class Input extends StatefulWidget {
 class _input extends State<Input> {
   @override
   Widget build(BuildContext context) {
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +49,7 @@ class _input extends State<Input> {
           textInputAction: TextInputAction.next,
           minLines: 1,
           style: const TextStyle(fontSize: 15, color: AppColors.blackCoal),
-          cursorColor: color,
+          cursorColor: theme.color,
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             focusColor: Theme.of(context).indicatorColor,

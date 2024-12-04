@@ -1,11 +1,10 @@
-import 'package:fitpulse_app/app/components/widgets/input.dart';
-import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/app/config/colors.dart';
+import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class SessionCreate extends StatelessWidget {
-  const SessionCreate({super.key});
+class PlanningCreate extends StatelessWidget {
+  const PlanningCreate({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +19,12 @@ class SessionCreate extends StatelessWidget {
         children: [
           const Center(
             child: Text(
-              'Ajouter une séance',
+              'Planifier une séance',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          const Input(
-            label: 'Nom de la séance',
-            placeholder: "Muscles abdominaux",
           ),
           const SizedBox(height: 20),
           Center(
@@ -43,7 +37,7 @@ class SessionCreate extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               ),
               child: const Text(
-                'Valider la séance',
+                'Planifier la séance',
                 style: TextStyle(fontSize: 16),
               ),
             ),

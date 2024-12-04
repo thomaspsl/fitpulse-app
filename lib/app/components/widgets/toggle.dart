@@ -32,7 +32,7 @@ class _ToggleState extends State<Toggle> {
 
   @override
   Widget build(BuildContext context) {
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +56,7 @@ class _ToggleState extends State<Toggle> {
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   backgroundColor:
-                      isSelected ? color : Color(0xFFEBE9E9),
+                      isSelected ? theme.color : Color(0xFFEBE9E9),
                   side: BorderSide(color: Colors.transparent),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),

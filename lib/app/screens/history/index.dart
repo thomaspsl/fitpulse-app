@@ -8,7 +8,8 @@ class HistoryIndex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
+
     final List<String> historyItems = List.generate(20, (index) => 'Historique Item ${index + 1}');
 
     return Container(
@@ -16,49 +17,54 @@ class HistoryIndex extends StatelessWidget {
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 15),
-            child: Text(
-              'Historique',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+      child: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Historique',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: historyItems.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                    gradient: LinearGradient(
-                      colors: [color, color.withOpacity(0.5)],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.topRight,
+              const SizedBox(height: 10),
+              // Correction: Expanded cannot be used inside a SingleChildScrollView
+              ListView.builder(
+                shrinkWrap: true, // Allows ListView to be inside a SingleChildScrollView
+                physics: const NeverScrollableScrollPhysics(), // Disable ListView scrolling
+                itemCount: historyItems.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      gradient: LinearGradient(
+                        colors: [theme.color, theme.color.withOpacity(0.5)],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                      ),
                     ),
-                  ),
-                  margin: const EdgeInsets.symmetric(vertical: 5),
-                  child: ListTile(
-                    leading: const Icon(Icons.history, color: AppColors.whiteTitanium),
-                    title: Text(historyItems[index], style: TextStyle(color: AppColors.whiteTitanium),),
-                    subtitle: Text('Description de l\'élément ${index + 1}', style: TextStyle(color: AppColors.whiteTitanium)),
-                    trailing: const Icon(Icons.arrow_forward_ios, color: AppColors.whiteTitanium),
-                    onTap: () {
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //  SnackBar(content: Text('Vous avez cliqué sur ${historyItems[index]}')),
-                      // );
-                    },
-                  ),
-                );
-              },
-            ),
+                    margin: const EdgeInsets.only(bottom: 5),
+                    child: ListTile(
+                      leading: const Icon(Icons.history, color: AppColors.whiteTitanium),
+                      title: Text(
+                        historyItems[index],
+                        style: const TextStyle(color: AppColors.whiteTitanium),
+                      ),
+                      subtitle: Text(
+                        'Description de l\'élément ${index + 1}',
+                        style: const TextStyle(color: AppColors.whiteTitanium),
+                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, color: AppColors.whiteTitanium),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

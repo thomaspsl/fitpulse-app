@@ -1,5 +1,6 @@
 import 'package:fitpulse_app/app/components/widgets/input.dart';
 import 'package:fitpulse_app/app/components/widgets/toggle.dart';
+import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class ExerciseCreate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
 
     return Container(
       width: double.infinity,
@@ -46,8 +47,8 @@ class ExerciseCreate extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => {},
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: color,
+                foregroundColor: AppColors.whiteTitanium,
+                backgroundColor: theme.color,
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               ),
               child: const Text(

@@ -1,13 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:fitpulse_app/data/repositories/comments.dart';
 
-class CommentsProvider with ChangeNotifier {
-  List<Map<String, dynamic>> _comments = [];
+class CommentProvider with ChangeNotifier {
   final CommentRepository _repository = CommentRepository();
+
+  List<Map<String, dynamic>> _comments = [];
 
   List<Map<String, dynamic>> get comments => _comments;
 
-  CommentsProvider() {
+  CommentProvider() {
     index();
   }
 
