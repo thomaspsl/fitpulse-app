@@ -4,9 +4,10 @@ import 'package:fitpulse_app/data/models/user.dart';
 import 'package:fitpulse_app/data/repositories/comments.dart';
 
 class UserProvider with ChangeNotifier {
-  List<User> _users = [];
-  final UserRepository _repository = UserRepository();
   final CommentRepository _commentRepository = CommentRepository();
+  final UserRepository _repository = UserRepository();
+
+  List<User> _users = [];
 
   List<User> get users => _users;
 

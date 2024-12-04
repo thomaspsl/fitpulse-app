@@ -2,13 +2,14 @@ import 'package:fitpulse_app/data/models/session.dart';
 import 'package:fitpulse_app/data/repositories/session.dart';
 import 'package:flutter/foundation.dart';
 
-class SessionsProvider with ChangeNotifier {
-  List<Session> _sessions = [];
+class SessionProvider with ChangeNotifier {
   final SessionRepository _repository = SessionRepository();
+
+  List<Session> _sessions = [];
 
   List<Session> get sessions => _sessions;
 
-  SessionsProvider() { index(); }
+  SessionProvider() { index(); }
 
   Future<void> index() async {
     _sessions = await _repository.index();

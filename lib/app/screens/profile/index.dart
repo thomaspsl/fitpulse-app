@@ -5,22 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class ProfileIndex extends StatefulWidget {
+class ProfileIndex extends StatelessWidget {
   const ProfileIndex({super.key});
 
   @override
-  State<ProfileIndex> createState() => _ProfileIndexState();
-}
-
-class _ProfileIndexState extends State<ProfileIndex> {
-  void updateTheme(Color color) {
-    var themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    themeProvider.update(color);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    var color = Provider.of<ThemeProvider>(context).color;
+    var theme = Provider.of<ThemeProvider>(context);
 
     return Container(
       width: double.infinity,
@@ -32,7 +22,7 @@ class _ProfileIndexState extends State<ProfileIndex> {
           children: [
             Icon(
               Icons.account_circle_rounded,
-              color: color,
+              color: theme.color,
               size: 100,
             ),
             const SizedBox(height: 20),
@@ -41,19 +31,25 @@ class _ProfileIndexState extends State<ProfileIndex> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
+                    var newTheme = Provider.of<ThemeProvider>(context);
+
                     return AlertDialog(
                       title: const Text('Choisir une couleur'),
                       content: SingleChildScrollView(
                         child: ColorPicker(
-                          pickerColor: color,
-                          onColorChanged: updateTheme,
+                          pickerColor: newTheme.color,
+                          onColorChanged: theme.update,
                         ),
                       ),
-                      actions: <Widget>[
+                      actions: [
                         ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+                          onPressed: () => GoRouter.of(context).pop(),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: AppColors.whiteTitanium,
+                            backgroundColor: theme.color,
+                            padding:
+                            const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                          ),
                           child: const Text('Valider'),
                         ),
                       ],
@@ -62,8 +58,8 @@ class _ProfileIndexState extends State<ProfileIndex> {
                 )
               }, //_googleLogin
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: color,
+                foregroundColor: AppColors.whiteTitanium,
+                backgroundColor: theme.color,
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               ),
@@ -74,10 +70,9 @@ class _ProfileIndexState extends State<ProfileIndex> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () => GoRouter.of(context)
-                  .pushReplacementNamed('login.index'), //_googleLogin
+              onPressed: () => GoRouter.of(context).goNamed('login.index'), //_googleLogin
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
+                foregroundColor: AppColors.whiteTitanium,
                 backgroundColor: AppColors.redLava,
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 25),

@@ -2,13 +2,14 @@ import 'package:fitpulse_app/data/repositories/exercise.dart';
 import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:flutter/foundation.dart';
 
-class ExercisesProvider with ChangeNotifier {
-  List<Exercise> _exercises = [];
+class ExerciseProvider with ChangeNotifier {
   final ExerciseRepository _repository = ExerciseRepository();
+
+  List<Exercise> _exercises = [];
 
   List<Exercise> get exercises => _exercises;
 
-  ExercisesProvider() { index(); }
+  ExerciseProvider() { index(); }
 
   Future<void> index() async {
     _exercises = await _repository.index();

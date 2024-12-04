@@ -1,11 +1,14 @@
 import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/components/widgets/toggle.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class SessionCreate extends StatelessWidget {
-  const SessionCreate({super.key});
+class ExerciseEdit extends StatelessWidget {
+  final String id;
+
+  const ExerciseEdit({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,9 @@ class SessionCreate extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Center(
+          Center(
             child: Text(
-              'Ajouter une séance',
+              'Modifier un exercice : $id',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -29,8 +32,17 @@ class SessionCreate extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           const Input(
-            label: 'Nom de la séance',
-            placeholder: "Muscles abdominaux",
+            label: 'Nom de l\'exercice',
+            placeholder: "Planche",
+          ),
+          const SizedBox(height: 10),
+          Toggle(
+            label: "Type :",
+            options: const ["Temps", "Répétitions"],
+            initialSelectedOption: null,
+            onOptionSelected: (selectedOption) {
+              print("Option sélectionnée : $selectedOption");
+            },
           ),
           const SizedBox(height: 20),
           Center(
@@ -39,11 +51,10 @@ class SessionCreate extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 foregroundColor: AppColors.whiteTitanium,
                 backgroundColor: theme.color,
-                padding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               ),
               child: const Text(
-                'Valider la séance',
+                'Modifier l\'exercice',
                 style: TextStyle(fontSize: 16),
               ),
             ),

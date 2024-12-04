@@ -3,8 +3,9 @@ import 'package:fitpulse_app/data/repositories/date.dart';
 import 'package:flutter/material.dart';
 
 class DateProvider with ChangeNotifier {
-  final List<Date> _dates = [];
   final DateRepository _repository = DateRepository();
+
+  final List<Date> _dates = [];
 
   List<Date> get dates => _dates;
 

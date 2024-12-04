@@ -6,23 +6,21 @@ abstract class AppThemes {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.whiteTitanium,
-    primaryColor: AppColors.blueSea,
+    primaryColor: AppColors.blackCoal,
     cardColor: AppColors.greyDark,
     indicatorColor: AppColors.greyLight,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    hoverColor: Colors.transparent,
   );
 
   // ThemeData Dark Mode
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.blackCoal,
-    primaryColor: AppColors.blueSea,
+    primaryColor: AppColors.whiteTitanium,
     cardColor: AppColors.greyLight,
     indicatorColor: AppColors.greyDark,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    hoverColor: Colors.transparent,
   );
 }
