@@ -287,4 +287,14 @@ class DBHelper {
     final db = await instance.database;
     db.close();
   }
+
+  /*Future<void> deleteDatabaseFile() async {
+    // Obtenez le chemin de la base de données
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'fitpulse.db');
+
+    // Supprimez le fichier de la base de données
+    await deleteDatabase(path);
+    print('Base de données supprimée : $path');
+  }*/
 }

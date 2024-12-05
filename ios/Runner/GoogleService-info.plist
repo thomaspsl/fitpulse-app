@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>444409846769-bi04f4c99f4mt5bgnbt81qeulf9gehvm.apps.googleusercontent.com</string>
+	<string>444409846769-bliiucjk66dbvkvpme6fsq2pn2pr3vba.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.444409846769-bi04f4c99f4mt5bgnbt81qeulf9gehvm</string>
+	<string>com.googleusercontent.apps.444409846769-bliiucjk66dbvkvpme6fsq2pn2pr3vba</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>444409846769-66d3jc4e13ths8j498j6e0gnt6fb0gr1.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.thomas.fitpulseApp</string>
+	<string>com.example.fitpulseapp</string>
 	<key>PROJECT_ID</key>
 	<string>fitpulse-586c0</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:444409846769:ios:6bab005798dc6572088250</string>
+	<string>1:444409846769:ios:66fe8f3ad4cc8bb2088250</string>
 </dict>
 </plist>

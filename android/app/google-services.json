@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:444409846769:android:4eaab41a0469510b088250",
+        "mobilesdk_app_id": "1:444409846769:android:d18c5757bfb1b127088250",
         "android_client_info": {
-          "package_name": "com.example.fitpulse_app"
+          "package_name": "com.example.fitpulseapp"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "444409846769-66d3jc4e13ths8j498j6e0gnt6fb0gr1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.fitpulse_app",
-            "certificate_hash": "7eac831128298598eabcd258d3a564f6dcd8c85c"
-          }
-        },
         {
           "client_id": "444409846769-vdbuq51spjgtvng3qncejcf4bcto361n.apps.googleusercontent.com",
           "client_type": 3
@@ -37,6 +29,13 @@
             {
               "client_id": "444409846769-vdbuq51spjgtvng3qncejcf4bcto361n.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "444409846769-a9oiin1dbe3od8m9g6ltimgs6qo0f0sr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fitpulseApp"
+              }
             }
           ]
         }

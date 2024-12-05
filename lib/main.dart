@@ -20,7 +20,7 @@ void main() async {
 
   final dbHelper = DBHelper();
   final db = await dbHelper.database;
-  // await dbHelper.deleteDatabase();
+  // await dbHelper.deleteDatabaseFile();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
