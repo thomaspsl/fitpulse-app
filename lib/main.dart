@@ -1,8 +1,8 @@
-import 'package:fitpulse_app/data/providers/date.dart';
 import 'package:fitpulse_app/data/providers/exercise.dart';
 import 'package:fitpulse_app/data/providers/session.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/providers/user.dart';
+import 'package:fitpulse_app/data/providers/date.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';

@@ -1,10 +1,10 @@
 import 'package:fitpulse_app/data/db/db_helper.dart';
 
 class CommentRepository {
-  final DBHelper _databaseHelper = DBHelper();
+  final DBHelper _DBHelper = DBHelper();
 
   Future<List<Map<String, dynamic>>> index() async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.query('Comments');
   }
 
@@ -14,7 +14,7 @@ class CommentRepository {
     int? sessionId,
     int? exerciseId,
   }) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.insert('Comments', {
       'content': content,
       'user_id': userId,
@@ -30,7 +30,7 @@ class CommentRepository {
     int? sessionId,
     int? exerciseId,
   }) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.update(
       'Comments',
       {
@@ -45,7 +45,7 @@ class CommentRepository {
   }
 
   Future<int> destroy(int id) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.delete(
       'Comments',
       where: 'id = ?',
@@ -54,7 +54,7 @@ class CommentRepository {
   }
 
   Future<List<Map<String, dynamic>>> getCommentsByUserId(int userId) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.query(
       'Comments',
       where: 'user_id = ?',
@@ -63,7 +63,7 @@ class CommentRepository {
   }
 
   Future<List<Map<String, dynamic>>> getCommentsBySessionId(int sessionId) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.query(
       'Comments',
       where: 'session_id = ?',
@@ -72,7 +72,7 @@ class CommentRepository {
   }
 
   Future<List<Map<String, dynamic>>> getCommentsByExerciseId(int exerciseId) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.query(
       'Comments',
       where: 'exercise_id = ?',
@@ -81,7 +81,7 @@ class CommentRepository {
   }
 
   Future<void> deleteCommentsByUserId(int userId) async {
-    final db = await DBHelper.instance.database;
+    final db = await _DBHelper.database;
     await db.delete(
       'Comments',
       where: 'user_id = ?',

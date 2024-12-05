@@ -100,36 +100,58 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                           },
                         ),
                         const SizedBox(height: 10),
-                        Row(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Type: ',
+                              'Type:',
                               style: TextStyle(
                                 color: Theme.of(context).cardColor,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic,
                               ),
                             ),
-                            ChoiceChip(
-                              label: const Text('Temps'),
-                              selected: isTime,
-                              selectedColor: theme.color,
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  isTime = selected;
-                                });
-                              },
-                            ),
-                            const SizedBox(width: 10),
-                            ChoiceChip(
-                              label: const Text('Répétitions'),
-                              selected: !isTime,
-                              selectedColor: theme.color,
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  isTime = !selected;
-                                });
-                              },
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                ChoiceChip(
+                                  label: Text(
+                                    'Temps',
+                                    style: TextStyle(
+                                      color: isTime
+                                          ? AppColors.whiteTitanium
+                                          : AppColors.blackCoal,
+                                    ),
+                                  ),
+                                  selected: isTime,
+                                  selectedColor: theme.color,
+                                  checkmarkColor: AppColors.whiteTitanium,
+                                  onSelected: (bool selected) {
+                                    setState(() {
+                                      isTime = selected;
+                                    });
+                                  },
+                                ),
+                                const SizedBox(width: 10),
+                                ChoiceChip(
+                                  label: Text(
+                                    'Répétitions',
+                                    style: TextStyle(
+                                      color: !isTime
+                                          ? AppColors.whiteTitanium
+                                          : AppColors.blackCoal,
+                                    ),
+                                  ),
+                                  selected: !isTime,
+                                  selectedColor: theme.color,
+                                  checkmarkColor: AppColors.whiteTitanium,
+                                  onSelected: (bool selected) {
+                                    setState(() {
+                                      isTime = !selected;
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -139,14 +161,17 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                             key: GlobalKey(),
                             label: 'Temps (secondes)',
                             hintText: '30',
-                            keyboardType: TextInputType.numberWithOptions(signed: true),
+                            keyboardType:
+                                TextInputType.numberWithOptions(signed: true),
                             initialValue: time.toString(),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Veuillez entrer une durée';
                               }
                               final intValue = int.tryParse(value);
-                              if (intValue == null || intValue < 1 || intValue > 300) {
+                              if (intValue == null ||
+                                  intValue < 1 ||
+                                  intValue > 300) {
                                 return 'Veuillez entrer une valeur entre 1 et 300';
                               }
                               return null;
@@ -162,14 +187,17 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                             key: GlobalKey(),
                             label: 'Répétitions',
                             hintText: '10',
-                            keyboardType: TextInputType.numberWithOptions(signed: true),
+                            keyboardType:
+                                TextInputType.numberWithOptions(signed: true),
                             initialValue: nb.toString(),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Veuillez entrer un nombre de répétitions';
                               }
                               final intValue = int.tryParse(value);
-                              if (intValue == null || intValue < 1 || intValue > 100) {
+                              if (intValue == null ||
+                                  intValue < 1 ||
+                                  intValue > 100) {
                                 return 'Veuillez entrer une valeur entre 1 et 100';
                               }
                               return null;
@@ -184,14 +212,17 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                         Input(
                           label: 'Nombre de séries',
                           hintText: '3',
-                          keyboardType: TextInputType.numberWithOptions(signed: true),
+                          keyboardType:
+                              TextInputType.numberWithOptions(signed: true),
                           initialValue: sessions.toString(),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Veuillez entrer un nombre de séries';
                             }
                             final intValue = int.tryParse(value);
-                            if (intValue == null || intValue < 1 || intValue > 10) {
+                            if (intValue == null ||
+                                intValue < 1 ||
+                                intValue > 10) {
                               return 'Veuillez entrer une valeur entre 1 et 10';
                             }
                             return null;
@@ -206,14 +237,17 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                         Input(
                           label: 'Pause entre séries (secondes)',
                           hintText: '60',
-                          keyboardType: TextInputType.numberWithOptions(signed: true),
+                          keyboardType:
+                              TextInputType.numberWithOptions(signed: true),
                           initialValue: recovery.toString(),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Veuillez entrer une durée de pause';
                             }
                             final intValue = int.tryParse(value);
-                            if (intValue == null || intValue < 0 || intValue > 300) {
+                            if (intValue == null ||
+                                intValue < 0 ||
+                                intValue > 300) {
                               return 'Veuillez entrer une valeur entre 0 et 300';
                             }
                             return null;

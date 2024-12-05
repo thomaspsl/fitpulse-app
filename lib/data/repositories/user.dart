@@ -2,10 +2,10 @@ import 'package:fitpulse_app/data/db/db_helper.dart';
 import 'package:fitpulse_app/data/models/user.dart';
 
 class UserRepository {
-  final DBHelper _databaseHelper = DBHelper();
+  final DBHelper _DBHelper = DBHelper();
 
   Future<List<User>> index() async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     final List<Map<String, dynamic>> maps = await db.query('User');
     return List.generate(maps.length, (i) {
       return User.fromMap(maps[i]);
@@ -13,12 +13,12 @@ class UserRepository {
   }
 
   Future<int> store(User user) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.insert('User', user.toMap());
   }
 
   Future<int> update(User user) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.update(
       'User',
       user.toMap(),
@@ -28,7 +28,7 @@ class UserRepository {
   }
 
   Future<int> destroy(int id) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.delete(
       'User',
       where: 'id = ?',
@@ -37,7 +37,7 @@ class UserRepository {
   }
 
   Future<User?> findById(int id) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'User',
       where: 'id = ?',

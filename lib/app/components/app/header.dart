@@ -14,7 +14,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({super.key, this.hide = false});
 
   @override
-  Size get preferredSize => const Size.fromHeight(55);
+  Size get preferredSize => Size.fromHeight(hide ? 0 : 55);
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +84,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           onTap: () => {
             showModalBottomSheet(
               context: context,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               useSafeArea: true,
               isScrollControlled: true,
               builder: (context) => bottomSheetContent!,
@@ -103,7 +104,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     if (currentRoute != '/profile') {
       return [
         Padding(
-          padding: const EdgeInsets.only(top: 3, right: 8),
+          padding: const EdgeInsets.only(top: 2, right: 15),
           child: GestureDetector(
             onTap: () => GoRouter.of(context).pushNamed('profile.index'),
             child: Icon(Icons.account_circle_rounded, color: color, size: 40),

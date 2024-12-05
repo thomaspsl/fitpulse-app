@@ -11,9 +11,18 @@ class RegisterIndex extends StatefulWidget {
 }
 
 class _RegisterIndexState extends State<RegisterIndex> {
-  @override
-  void initState() {
-    super.initState();
+  final formKey = GlobalKey<FormState>();
+
+  String pseudo = '';
+  String mail = '';
+  String password = '';
+
+  void _submitForm(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      // Inscription
+
+      GoRouter.of(context).pushReplacementNamed('session.index');
+    }
   }
 
   @override
@@ -43,34 +52,74 @@ class _RegisterIndexState extends State<RegisterIndex> {
               ),
             ),
             const SizedBox(height: 30),
-            /*Input(
-              label: "Pseudo",
-              placeholder: "example",
-            ),*/
-            const SizedBox(height: 20),
-            /*Input(
-              label: "Mail",
-              placeholder: "example@domain.com",
-            ),*/
-            const SizedBox(height: 20),
-            /*Input(
-              label: "Mot de passe",
-              placeholder: "**********",
-              obscure: true,
-            ),*/
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () => GoRouter.of(context)
-                  .pushReplacementNamed('session.index'), //_googleLogin
-              style: ElevatedButton.styleFrom(
-                foregroundColor: AppColors.whiteTitanium,
-                backgroundColor: AppColors.blueSea,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              ),
-              child: const Text(
-                'Valider l\'inscription',
-                style: TextStyle(fontSize: 16),
+            Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Input(
+                    label: 'Pseudo',
+                    hintText: 'example',
+                    initialValue: pseudo,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un pseudo';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        pseudo = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  Input(
+                    label: 'Mail',
+                    hintText: 'example@domain.com',
+                    initialValue: mail,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un mail';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        mail = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  Input(
+                    label: 'Mot de passe',
+                    hintText: '**********',
+                    initialValue: password,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un password';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        password = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () =>  _submitForm(context),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: AppColors.whiteTitanium,
+                      backgroundColor: AppColors.blueSea,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                    ),
+                    child: const Text(
+                      'Valider l\'inscription',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 20),

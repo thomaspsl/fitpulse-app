@@ -3,10 +3,10 @@ import 'package:fitpulse_app/data/models/session.dart';
 import 'package:fitpulse_app/data/db/db_helper.dart';
 
 class SessionRepository {
-  final DBHelper _databaseHelper = DBHelper();
+  final DBHelper _DBHelper = DBHelper();
 
   Future<List<Session>> index() async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     final sessionsData = await db.query('Session');
     List<Session> sessions = [];
 
@@ -25,7 +25,7 @@ class SessionRepository {
   }
 
   Future<int> store(Session session) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     final id = await db.insert('Session', session.toMap());
     for (var exercise in session.exercises) {
       await db.insert('SessionExercise', {
@@ -37,7 +37,7 @@ class SessionRepository {
   }
 
   Future<void> update(Session session) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
 
     if (session.id != null) {
       await db.update(
@@ -61,7 +61,7 @@ class SessionRepository {
   }
 
   Future<void> destroy(int id) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     await db.delete('Session', where: 'id = ?', whereArgs: [id]);
     await db.delete('SessionExercise', where: 'session_id = ?', whereArgs: [id]);
   }

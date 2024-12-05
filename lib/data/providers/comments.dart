@@ -70,7 +70,7 @@ class CommentProvider with ChangeNotifier {
     }
   }
 
-  Future<void> delete(int id) async {
+  Future<void> destroy(int id) async {
     await _repository.destroy(id);
 
     _comments.removeWhere((comment) => comment['id'] == id);

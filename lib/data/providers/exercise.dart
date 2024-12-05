@@ -34,8 +34,9 @@ class ExerciseProvider with ChangeNotifier {
     }
   }
 
-  Future<void> delete(int index) async {
+  Future<void> destroy(int index) async {
     final exercise = _exercises[index];
+    print(exercise.id);
     if (exercise.id != null) {
       await _repository.destroy(exercise.id!);
     }

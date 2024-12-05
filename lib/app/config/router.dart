@@ -1,14 +1,14 @@
 import 'package:fitpulse_app/app/components/layouts/transition.dart';
-import 'package:fitpulse_app/app/screens/exercise/edit.dart';
 import 'package:fitpulse_app/app/screens/exercise/index.dart';
-import 'package:fitpulse_app/app/screens/history/index.dart';
 import 'package:fitpulse_app/app/screens/planning/index.dart';
 import 'package:fitpulse_app/app/screens/register/index.dart';
+import 'package:fitpulse_app/app/screens/session/index.dart';
+import 'package:fitpulse_app/app/screens/exercise/edit.dart';
+import 'package:fitpulse_app/app/screens/history/index.dart';
 import 'package:fitpulse_app/app/components/app/footer.dart';
 import 'package:fitpulse_app/app/components/app/header.dart';
 import 'package:fitpulse_app/app/screens/profile/index.dart';
 import 'package:fitpulse_app/app/screens/session/edit.dart';
-import 'package:fitpulse_app/app/screens/session/index.dart';
 import 'package:fitpulse_app/app/screens/login/index.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';

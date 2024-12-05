@@ -4,10 +4,10 @@ import 'package:fitpulse_app/data/db/db_helper.dart';
 import 'package:fitpulse_app/data/models/date.dart';
 
 class DateRepository {
-  final DBHelper _databaseHelper = DBHelper();
+  final DBHelper _DBHelper = DBHelper();
 
   Future<List<Date>> index() async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     final List<Map<String, dynamic>> dateMaps =
     await db.query('Date');
 
@@ -51,7 +51,7 @@ class DateRepository {
   }
 
   Future<void> store(Date date) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     await db.insert(
       'Date',
       {
@@ -64,7 +64,7 @@ class DateRepository {
   }
 
   Future<void> storeRecurring(Date date, int weekday) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     for (int i = 0; i < 4; i++) {
       DateTime eventDate = date.date.add(Duration(days: i * 7));
       while (eventDate.weekday != weekday) {
@@ -90,7 +90,7 @@ class DateRepository {
   }
 
   Future<void> destroy(Date date) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     await db.delete(
       'Date',
       where: 'session_id = ? AND date = ?',
@@ -99,7 +99,7 @@ class DateRepository {
   }
 
   Future<void> destroyRecurring(Date date) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     await db.delete(
       'Date',
       where: 'session_id = ? AND date >= ?',

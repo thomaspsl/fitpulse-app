@@ -11,9 +11,17 @@ class LoginIndex extends StatefulWidget {
 }
 
 class _LoginIndexState extends State<LoginIndex> {
-  @override
-  void initState() {
-    super.initState();
+  final formKey = GlobalKey<FormState>();
+
+  String mail = '';
+  String password = '';
+
+  void _submitForm(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      // Connexion
+
+      GoRouter.of(context).pushReplacementNamed('session.index');
+    }
   }
 
   @override
@@ -43,27 +51,57 @@ class _LoginIndexState extends State<LoginIndex> {
               ),
             ),
             const SizedBox(height: 30),
-            /*Input(
-              label: "Mail",
-              placeholder: "example@domain.com",
-            ),*/
-            const SizedBox(height: 20),
-            /*Input(
-              label: "Mot de passe",
-              placeholder: "**********",
-              obscure: true,
-            ),*/
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () => GoRouter.of(context).pushReplacementNamed('session.index'), //_googleLogin
-              style: ElevatedButton.styleFrom(
-                foregroundColor: AppColors.whiteTitanium,
-                backgroundColor: AppColors.blueSea,
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              ),
-              child: const Text(
-                'Valider la connexion',
-                style: TextStyle(fontSize: 16),
+            Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Input(
+                    label: 'Mail',
+                    hintText: 'example@domain.com',
+                    initialValue: mail,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un mail';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        mail = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  Input(
+                    label: 'Mot de passe',
+                    hintText: '**********',
+                    initialValue: password,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un password';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        password = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () =>  _submitForm(context),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: AppColors.whiteTitanium,
+                      backgroundColor: AppColors.blueSea,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                    ),
+                    child: const Text(
+                      'Valider la connexion',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 20),

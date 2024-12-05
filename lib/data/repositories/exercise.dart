@@ -2,10 +2,10 @@ import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:fitpulse_app/data/db/db_helper.dart';
 
 class ExerciseRepository {
-  final DBHelper _databaseHelper = DBHelper();
+  final DBHelper _DBHelper = DBHelper();
 
   Future<List<Exercise>> index() async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     final List<Map<String, dynamic>> maps = await db.query('Exercise');
     return List.generate(maps.length, (i) {
       return Exercise.fromMap(maps[i]);
@@ -13,12 +13,12 @@ class ExerciseRepository {
   }
 
   Future<int> store(Exercise exercise) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.insert('Exercise', exercise.toMap());
   }
 
   Future<int> update(Exercise exercise) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.update(
       'Exercise',
       exercise.toMap(),
@@ -28,7 +28,7 @@ class ExerciseRepository {
   }
 
   Future<int> destroy(int id) async {
-    final db = await _databaseHelper.database;
+    final db = await _DBHelper.database;
     return await db.delete(
       'Exercise',
       where: 'id = ?',

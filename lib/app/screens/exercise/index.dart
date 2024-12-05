@@ -1,4 +1,3 @@
-import 'package:fitpulse_app/app/screens/exercise/edit.dart';
 import 'package:fitpulse_app/data/providers/exercise.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/app/config/colors.dart';
@@ -21,19 +20,21 @@ class ExerciseIndex extends StatelessWidget {
       'AUTRES': 'Autres exercices',
     };
 
-    final Map<String, List<dynamic>> groupedExercises = {
+    final Map<String, List<Map<String, dynamic>>> groupedExercises = {
       'AUTRES': [],
     };
 
-    for (var exercise in exercises) {
+    for (var i = 0; i < exercises.length; i++) {
+      final exercise = exercises[i];
       final category = exercise.category;
+
       if (categoryTitles.containsKey(category)) {
         if (!groupedExercises.containsKey(category)) {
           groupedExercises[category] = [];
         }
-        groupedExercises[category]!.add(exercise);
+        groupedExercises[category]!.add({'exercise': exercise, 'index': i});
       } else {
-        groupedExercises['AUTRES']!.add(exercise);
+        groupedExercises['AUTRES']!.add({'exercise': exercise, 'index': i});
       }
     }
 
@@ -41,7 +42,7 @@ class ExerciseIndex extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.symmetric(),
       child: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -74,11 +75,14 @@ class ExerciseIndex extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: categoryExercises.length,
                         itemBuilder: (context, index) {
-                          final exercise = categoryExercises[index];
+                          final item = categoryExercises[index];
+                          final exercise = item['exercise'];
+
                           return GestureDetector(
                             onTap: () => GoRouter.of(context).pushNamed(
-                                'exercise.edit',
-                                pathParameters: {'id': "${exercise.id}"}),
+                              'exercise.edit',
+                              pathParameters: {'id': "${item['index']}"},
+                            ),
                             child: Container(
                               width: 150,
                               decoration: BoxDecoration(
@@ -102,33 +106,40 @@ class ExerciseIndex extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(height: 5),
-                                  Icon(
-                                    Icons.model_training,
-                                    color: AppColors.whiteTitanium
-                                        .withOpacity(0.7),
-                                    size: 20,
-                                  ),
-                                  const SizedBox(height: 5),
                                   if (exercise.isTime)
                                     Text(
                                       "Temps : ${exercise.time.inSeconds}s",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: AppColors.whiteTitanium
-                                            .withOpacity(0.7),
+                                        color: AppColors.whiteTitanium.withOpacity(0.7),
                                         fontSize: 14,
                                       ),
                                     )
                                   else
                                     Text(
-                                    "Séries : ${exercise.nb}",
+                                      "Séries : ${exercise.nb}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                        color: AppColors.whiteTitanium.withOpacity(0.7),
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  const SizedBox(height: 5),
+                                  Icon(
+                                    Icons.timer,
+                                    color: AppColors.whiteTitanium.withOpacity(0.7),
+                                    size: 20,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    "Récup : ${exercise.recovery.inSeconds }s",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
                                       color: AppColors.whiteTitanium
                                           .withOpacity(0.7),
                                       fontSize: 14,
-                                      ),
                                     ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -139,7 +150,6 @@ class ExerciseIndex extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(height: 15),
                   ],
                 ),
               );

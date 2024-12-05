@@ -24,15 +24,17 @@ class SessionIndex extends StatelessWidget {
       'AUTRES': [],
     };
 
-    for (var session in sessions) {
-      final category = session.category;
+    for (var i = 0; i < sessions.length; i++) {
+      final session = sessions[i];
+      final category = session.category;;
+
       if (categoryTitles.containsKey(category)) {
         if (!groupedSessions.containsKey(category)) {
           groupedSessions[category] = [];
         }
-        groupedSessions[category]!.add(session);
+        groupedSessions[category]!.add({'session': session, 'index': i});
       } else {
-        groupedSessions['AUTRES']!.add(session);
+        groupedSessions['AUTRES']!.add({'session': session, 'index': i});
       }
     }
 
@@ -40,7 +42,7 @@ class SessionIndex extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.symmetric(),
       child: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -73,11 +75,14 @@ class SessionIndex extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: categorySessions.length,
                         itemBuilder: (context, index) {
-                          final session = categorySessions[index];
+                          final item = categorySessions[index];
+                          final session = item['session'];
+
                           return GestureDetector(
                             onTap: () => GoRouter.of(context).pushNamed(
-                                'session.edit',
-                                pathParameters: {'id': "${session.id}"}),
+                              'session.edit',
+                              pathParameters: {'id': "${item['index']}"},
+                            ),
                             child: Container(
                               width: 150,
                               decoration: BoxDecoration(
@@ -136,7 +141,6 @@ class SessionIndex extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(height: 15),
                   ],
                 ),
               );
