@@ -1,11 +1,11 @@
-// import 'package:fitpulse_app/data/services/notifications_service.dart';
-// import 'package:fitpulse_app/data/services/db_helper.dart';
+import 'package:fitpulse_app/data/services/notifications_service.dart';
+import 'package:fitpulse_app/data/services/db_helper.dart';
 import 'package:fitpulse_app/data/providers/exercise.dart';
 import 'package:fitpulse_app/data/providers/session.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/providers/date.dart';
 import 'package:fitpulse_app/data/providers/user.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +15,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Firebase init
-  // await Firebase.initializeApp();
-  // await NotificationsService().init();
+  await Firebase.initializeApp();
+  await NotificationsService().init();
 
-  // final dbHelper = DBHelper();
-  // final db = await dbHelper.database;
+  final dbHelper = DBHelper();
+  final db = await dbHelper.database;
   // await dbHelper.deleteDatabase();
 
   SystemChrome.setPreferredOrientations([
