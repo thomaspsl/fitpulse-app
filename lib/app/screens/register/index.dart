@@ -43,21 +43,21 @@ class _RegisterIndexState extends State<RegisterIndex> {
               ),
             ),
             const SizedBox(height: 30),
-            Input(
+            /*Input(
               label: "Pseudo",
               placeholder: "example",
-            ),
+            ),*/
             const SizedBox(height: 20),
-            Input(
+            /*Input(
               label: "Mail",
               placeholder: "example@domain.com",
-            ),
+            ),*/
             const SizedBox(height: 20),
-            Input(
+            /*Input(
               label: "Mot de passe",
               placeholder: "**********",
               obscure: true,
-            ),
+            ),*/
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () => GoRouter.of(context)

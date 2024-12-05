@@ -84,8 +84,10 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           onTap: () => {
             showModalBottomSheet(
               context: context,
-              builder: (BuildContext context) => bottomSheetContent!,
-            )
+              useSafeArea: true,
+              isScrollControlled: true,
+              builder: (context) => bottomSheetContent!,
+            ),
           },
           child: Icon(Icons.add_outlined, color: color, size: 40),
         ),

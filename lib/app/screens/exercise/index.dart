@@ -103,21 +103,32 @@ class ExerciseIndex extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 5),
                                   Icon(
-                                    Icons.timer,
+                                    Icons.model_training,
                                     color: AppColors.whiteTitanium
                                         .withOpacity(0.7),
                                     size: 20,
                                   ),
                                   const SizedBox(height: 5),
-                                  Text(
-                                    "Récup : ${exercise.recovery}s",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                  if (exercise.isTime)
+                                    Text(
+                                      "Temps : ${exercise.time.inSeconds}s",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: AppColors.whiteTitanium
+                                            .withOpacity(0.7),
+                                        fontSize: 14,
+                                      ),
+                                    )
+                                  else
+                                    Text(
+                                    "Séries : ${exercise.nb}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
                                       color: AppColors.whiteTitanium
                                           .withOpacity(0.7),
                                       fontSize: 14,
+                                      ),
                                     ),
-                                  ),
                                 ],
                               ),
                             ),

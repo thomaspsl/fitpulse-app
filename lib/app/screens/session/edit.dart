@@ -30,10 +30,10 @@ class SessionEdit extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Input(
+          /*const Input(
             label: 'Nom de la séance',
             placeholder: "Muscles abdominaux",
-          ),
+          ),*/
           const SizedBox(height: 20),
           Center(
             child: ElevatedButton(

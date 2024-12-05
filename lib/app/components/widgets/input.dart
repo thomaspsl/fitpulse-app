@@ -1,27 +1,31 @@
-import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
-import 'package:flutter/material.dart';
+import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class Input extends StatefulWidget {
   const Input({
     super.key,
     required this.label,
-    required this.placeholder,
-    this.maxLines = 1,
-    this.obscure = false,
+    this.hintText,
+    this.keyboardType = TextInputType.text,
+    this.validator,
+    this.initialValue,
+    this.onChanged,
   });
 
   final String label;
-  final String placeholder;
-  final int maxLines;
-  final bool obscure;
+  final String? hintText;
+  final String? initialValue;
+  final TextInputType keyboardType;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   @override
-  State<Input> createState() => _input();
+  State<Input> createState() => _InputState();
 }
 
-class _input extends State<Input> {
+class _InputState extends State<Input> {
   @override
   Widget build(BuildContext context) {
     var theme = Provider.of<ThemeProvider>(context);
@@ -40,20 +44,19 @@ class _input extends State<Input> {
             ),
           ),
         ),
-        TextField(
-          obscureText: widget.obscure,
-          autofocus: false,
-          // controller: _emailController,
-          scrollPhysics: const ScrollPhysics(),
-          maxLines: widget.maxLines,
-          textInputAction: TextInputAction.next,
-          minLines: 1,
-          style: const TextStyle(fontSize: 15, color: AppColors.blackCoal),
-          cursorColor: theme.color,
+        TextFormField(
+          textInputAction: TextInputAction.done,
           decoration: InputDecoration(
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: const BorderSide(color: Colors.transparent),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: const BorderSide(color: Colors.transparent),
+            ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             focusColor: Theme.of(context).indicatorColor,
-            contentPadding: const EdgeInsets.only(left: 12, top: 30, right: 12),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(color: Colors.transparent),
@@ -64,9 +67,15 @@ class _input extends State<Input> {
             ),
             filled: true,
             hintStyle: TextStyle(color: AppColors.greyDark),
-            hintText: widget.placeholder,
-            fillColor: Color(0xFFEBE9E9),
+            hintText: widget.hintText,
+            fillColor: const Color(0xFFEBE9E9),
           ),
+          initialValue: widget.initialValue,
+          style: const TextStyle(fontSize: 15, color: AppColors.blackCoal),
+          cursorColor: theme.color,
+          keyboardType: widget.keyboardType,
+          validator: widget.validator,
+          onChanged: widget.onChanged,
         ),
       ],
     );

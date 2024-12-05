@@ -31,10 +31,10 @@ class ExerciseEdit extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Input(
+          /*const Input(
             label: 'Nom de l\'exercice',
             placeholder: "Planche",
-          ),
+          ),*/
           const SizedBox(height: 10),
           Toggle(
             label: "Type :",
