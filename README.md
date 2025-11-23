@@ -22,7 +22,7 @@
 <div>
     
   ## 👨‍🎓 Contributors
-  ![Contributors](https://contrib.rocks/image?repo=thomaspsl-org/hangman-app)
+  ![Contributors](https://contrib.rocks/image?repo=thomaspsl/fitpulse-app)
 
 ## 📚 Description
 
