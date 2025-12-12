@@ -1,5 +1,5 @@
-import 'package:fitpulse_app/data/models/date.dart';
 import 'package:fitpulse_app/data/repositories/date.dart';
+import 'package:fitpulse_app/data/models/date.dart';
 import 'package:flutter/material.dart';
 
 class DateProvider with ChangeNotifier {

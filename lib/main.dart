@@ -1,5 +1,4 @@
-import 'package:fitpulse_app/data/services/notifications_service.dart';
-import 'package:fitpulse_app/data/services/db_helper.dart';
+import 'package:fitpulse_app/data/services/notifications.dart';
 import 'package:fitpulse_app/data/providers/exercise.dart';
 import 'package:fitpulse_app/data/providers/session.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';

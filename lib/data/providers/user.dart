@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart';
+import 'package:fitpulse_app/data/repositories/comments.dart';
 import 'package:fitpulse_app/data/repositories/user.dart';
 import 'package:fitpulse_app/data/models/user.dart';
-import 'package:fitpulse_app/data/repositories/comments.dart';
+import 'package:flutter/foundation.dart';
 
 class UserProvider with ChangeNotifier {
   final CommentRepository _commentRepository = CommentRepository();
@@ -11,9 +11,7 @@ class UserProvider with ChangeNotifier {
 
   List<User> get users => _users;
 
-  UserProvider() {
-    index();
-  }
+  UserProvider() { index(); }
 
   Future<void> index() async {
     _users = await _repository.index();

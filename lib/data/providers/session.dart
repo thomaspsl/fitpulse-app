@@ -1,5 +1,5 @@
-import 'package:fitpulse_app/data/models/session.dart';
 import 'package:fitpulse_app/data/repositories/session.dart';
+import 'package:fitpulse_app/data/models/session.dart';
 import 'package:flutter/foundation.dart';
 
 class SessionProvider with ChangeNotifier {
@@ -34,7 +34,7 @@ class SessionProvider with ChangeNotifier {
     }
   }
 
-  Future<void> delete(int index) async {
+  Future<void> destroy(int index) async {
     final session = _sessions[index];
     if (session.id != null) {
       await _repository.destroy(session.id!);
