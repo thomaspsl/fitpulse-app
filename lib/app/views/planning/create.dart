@@ -67,22 +67,22 @@ class _PlanningCreateState extends State<PlanningCreate> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () => _submitForm(context),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: AppColors.whiteTitanium,
-                        backgroundColor: theme.color,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 25),
-                      ),
-                      child: const Text(
-                        'Planifier la séance',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
+                  // const SizedBox(height: 20),
+                  // Center(
+                  //   child: ElevatedButton(
+                  //     onPressed: () => _submitForm(context),
+                  //     style: ElevatedButton.styleFrom(
+                  //       foregroundColor: AppColors.whiteTitanium,
+                  //       backgroundColor: theme.color,
+                  //       padding: const EdgeInsets.symmetric(
+                  //           vertical: 10, horizontal: 25),
+                  //     ),
+                  //     child: const Text(
+                  //       'Planifier la séance',
+                  //       style: TextStyle(fontSize: 16),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

@@ -1,24 +1,25 @@
-import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/layouts/layouts/app/input.dart';
 import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
-class LoginIndex extends StatefulWidget {
-  const LoginIndex({super.key});
+class RegisterIndex extends StatefulWidget {
+  const RegisterIndex({super.key});
 
   @override
-  State<LoginIndex> createState() => _LoginIndexState();
+  State<RegisterIndex> createState() => _RegisterIndexState();
 }
 
-class _LoginIndexState extends State<LoginIndex> {
+class _RegisterIndexState extends State<RegisterIndex> {
   final formKey = GlobalKey<FormState>();
 
+  String pseudo = '';
   String mail = '';
   String password = '';
 
   void _submitForm(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      // Connexion
+      // Inscription
 
       GoRouter.of(context).pushReplacementNamed('session.index');
     }
@@ -36,13 +37,13 @@ class _LoginIndexState extends State<LoginIndex> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'lib/assets/images/login.png',
+              'lib/assets/images/register.png',
               width: MediaQuery.of(context).size.width * 0.7,
             ),
             const SizedBox(height: 20),
             Center(
               child: Text(
-                "Connectez-vous à FitPulse",
+                "Inscrivez-vous à FitPulse",
                 style: TextStyle(
                   color: AppColors.blueSea,
                   fontWeight: FontWeight.bold,
@@ -55,6 +56,23 @@ class _LoginIndexState extends State<LoginIndex> {
               key: formKey,
               child: Column(
                 children: [
+                  Input(
+                    label: 'Pseudo',
+                    hintText: 'example',
+                    initialValue: pseudo,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un pseudo';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        pseudo = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 20),
                   Input(
                     label: 'Mail',
                     hintText: 'example@domain.com',
@@ -97,7 +115,7 @@ class _LoginIndexState extends State<LoginIndex> {
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                     ),
                     child: const Text(
-                      'Valider la connexion',
+                      'Valider l\'inscription',
                       style: TextStyle(fontSize: 16),
                     ),
                   ),
@@ -105,11 +123,12 @@ class _LoginIndexState extends State<LoginIndex> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text('Vous découvrez FitPulse ?'),
+            const Text('Déjà un compte ?'),
             TextButton(
-              onPressed: () => GoRouter.of(context).pushReplacementNamed('register.index'),
+              onPressed: () =>
+                  GoRouter.of(context).pushReplacementNamed('login.index'),
               child: Text(
-                'Inscrivez-vous',
+                'Connectez-vous !',
                 style: TextStyle(
                   color: AppColors.blueSea,
                 ),

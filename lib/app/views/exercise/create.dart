@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/layouts/layouts/app/input.dart';
 import 'package:fitpulse_app/data/providers/exercise.dart';
 import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
@@ -124,6 +124,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                                     ),
                                   ),
                                   selected: isTime,
+                                  backgroundColor: AppColors.whiteTitanium,
                                   selectedColor: theme.color,
                                   checkmarkColor: AppColors.whiteTitanium,
                                   onSelected: (bool selected) {
@@ -143,6 +144,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                                     ),
                                   ),
                                   selected: !isTime,
+                                  backgroundColor: AppColors.whiteTitanium,
                                   selectedColor: theme.color,
                                   checkmarkColor: AppColors.whiteTitanium,
                                   onSelected: (bool selected) {

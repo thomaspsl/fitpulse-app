@@ -2,17 +2,17 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:async';
 
-class DBHelper {
-  static final DBHelper instance = DBHelper._init();
+class SqliteService {
+  static final SqliteService instance = SqliteService._init();
   static Database? _database;
 
-  factory DBHelper() {
+  factory SqliteService() {
     return instance;
   }
 
-  DBHelper._init();
+  SqliteService._init();
 
-  Future<Database> get database async {
+  Future<Database> get db async {
     if (_database != null) return _database!;
     _database = await _initDB();
     return _database!;
@@ -284,7 +284,7 @@ class DBHelper {
   }
 
   Future close() async {
-    final db = await instance.database;
+    final db = await instance.db;
     db.close();
   }
 }

@@ -5,15 +5,44 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class ExerciseEdit extends StatelessWidget {
+class ExerciseEdit extends StatefulWidget {
   final String id;
 
   const ExerciseEdit({super.key, required this.id});
 
   @override
+  State<ExerciseEdit> createState() => _ExerciseEditState();
+}
+
+class _ExerciseEditState extends State<ExerciseEdit> {
+
+  void _submitDelete(BuildContext context) {
+    var exercise = Provider.of<ExerciseProvider>(context);
+
+    // try {
+    //   int idInt = int.parse(id);
+    //   exercise.destroy(idInt);
+    // } catch (e) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(
+    //         content:
+    //         Text('Impossible de supprimer l\'exercice.')),
+    //   );
+    // }
+    GoRouter.of(context).goNamed('exercise.index');
+
+    GoRouter.of(context).pop();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: AppColors.redLava,
+        content: Text('Fonctionnalité indisponible.'),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     // var theme = Provider.of<ThemeProvider>(context);
-    var exercise = Provider.of<ExerciseProvider>(context);
 
     return Container(
       width: double.infinity,
@@ -53,19 +82,7 @@ class ExerciseEdit extends StatelessWidget {
               const SizedBox(height: 10),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    try {
-                      int idInt = int.parse(id);
-                      exercise.destroy(idInt);
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content:
-                                Text('Impossible de supprimer l\'exercice.')),
-                      );
-                    }
-                    GoRouter.of(context).goNamed('exercise.index');
-                  },
+                  onPressed: () => _submitDelete,
                   style: ElevatedButton.styleFrom(
                     foregroundColor: AppColors.whiteTitanium,
                     backgroundColor: AppColors.redLava,

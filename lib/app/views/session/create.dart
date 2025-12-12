@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/layouts/layouts/app/input.dart';
 import 'package:fitpulse_app/data/providers/session.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/models/exercise.dart';
@@ -24,9 +24,17 @@ class _SessionCreateState extends State<SessionCreate> {
   int recovery = 60;
 
   void _submitForm(BuildContext context) {
-    if (_formKey.currentState!.validate() && selectedExercises.isNotEmpty) {
+    GoRouter.of(context).pop();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: AppColors.redLava,
+        content: Text('Fonctionnalité indisponible.'),
+      ),
+    );
+
+    /*if (_formKey.currentState!.validate() && selectedExercises.isNotEmpty) {
       final session = Provider.of<SessionProvider>(context, listen: false);
-      /*session.store(
+      */ /*session.store(
         Session(
           name: name,
           exercises: selectedExercises,
@@ -34,7 +42,7 @@ class _SessionCreateState extends State<SessionCreate> {
           category: 'PERSO',
           recovery: restBetweenExercises.inSeconds,
         ),
-      );*/
+      );*/ /*
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Séance créée avec succès!')),
@@ -44,7 +52,7 @@ class _SessionCreateState extends State<SessionCreate> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Veuillez compléter tous les champs.')),
       );
-    }
+    }*/
   }
 
   /*void _showLinkForm(BuildContext context, List<Exercise> exercisesProvider, List<Exercise> selectedExercises, Function(List<Exercise>) onUpdate) {
@@ -189,7 +197,8 @@ class _SessionCreateState extends State<SessionCreate> {
                               children: SessionType.values.map((sessionType) {
                                 final isSelected = type == sessionType;
                                 return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 4.0),
                                   child: ChoiceChip(
                                     label: Text(
                                       sessionType.toString().split('.').last,
@@ -199,6 +208,13 @@ class _SessionCreateState extends State<SessionCreate> {
                                             : AppColors.blackCoal,
                                       ),
                                     ),
+
+                                    disabledColor: AppColors.whiteTitanium,
+                                    surfaceTintColor: AppColors.whiteTitanium,
+                                    shadowColor: AppColors.whiteTitanium,
+                                    selectedShadowColor: AppColors.whiteTitanium,
+
+                                    backgroundColor: AppColors.whiteTitanium,
                                     checkmarkColor: AppColors.whiteTitanium,
                                     selected: isSelected,
                                     selectedColor: theme.color,
@@ -213,32 +229,21 @@ class _SessionCreateState extends State<SessionCreate> {
                             ),
                           ],
                         ),
-                        /*DropdownButtonFormField<SessionType>(
-                          value: type,
-                          onChanged: (SessionType? newValue) {
-                            setState(() {
-                              type = newValue!;
-                            });
-                          },
-                          items: SessionType.values.map((SessionType sessionType) {
-                            return DropdownMenuItem<SessionType>(
-                              value: sessionType,
-                              child: Text(sessionType.toString().split('.').last),
-                            );
-                          }).toList(),
-                        ),*/
                         const SizedBox(height: 20),
                         Input(
                           label: 'Pause entre exercices (secondes)',
                           hintText: '60',
-                          keyboardType: TextInputType.numberWithOptions(signed: true),
+                          keyboardType:
+                              TextInputType.numberWithOptions(signed: true),
                           initialValue: recovery.toString(),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Veuillez entrer une durée de pause';
                             }
                             final intValue = int.tryParse(value);
-                            if (intValue == null || intValue < 0 || intValue > 300) {
+                            if (intValue == null ||
+                                intValue < 0 ||
+                                intValue > 300) {
                               return 'Veuillez entrer une valeur entre 0 et 300';
                             }
                             return null;
