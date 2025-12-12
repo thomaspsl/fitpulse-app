@@ -46,7 +46,7 @@ flutter:
   uses-material-design: true
 
 flutter_launcher_icons:
-  image_path: "lib/assets/images/logo.png"
+  image_path: "lib/assets/images/favicon.png"
   remove_alpha_ios: true
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "lib/assets/images/logo.png"
