@@ -1,7 +1,7 @@
+import 'package:fitpulse_app/data/services/database.dart';
 import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:fitpulse_app/data/models/session.dart';
 import 'package:fitpulse_app/data/models/date.dart';
-import 'package:fitpulse_app/data/services/database.dart';
 
 class DateRepository {
   final SqliteService _sqliteService = SqliteService();

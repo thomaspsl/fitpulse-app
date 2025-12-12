@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "444409846769",
+    "project_id": "fitpulse-586c0",
+    "storage_bucket": "fitpulse-586c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444409846769:android:4eaab41a0469510b088250",
+        "android_client_info": {
+          "package_name": "com.example.fitpulse_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444409846769-66d3jc4e13ths8j498j6e0gnt6fb0gr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitpulse_app",
+            "certificate_hash": "7eac831128298598eabcd258d3a564f6dcd8c85c"
+          }
+        },
+        {
+          "client_id": "444409846769-vdbuq51spjgtvng3qncejcf4bcto361n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjwnsLVepGgqnQCMuIa6KsaoqDAYAmhfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444409846769-vdbuq51spjgtvng3qncejcf4bcto361n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
