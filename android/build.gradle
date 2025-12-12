@@ -6,7 +6,6 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.1'
-        classpath 'dev.flutter:flutter-gradle-plugin'
     }
 }
 
@@ -18,10 +17,9 @@ allprojects {
 }
 
 rootProject.buildDir = "../build"
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(":app")
 }
 
