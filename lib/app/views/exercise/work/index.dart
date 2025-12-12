@@ -1,13 +1,12 @@
-import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:flutter/material.dart';
 
 class SessionDetailsIndex extends StatelessWidget {
   final String sessionName;
 
   const SessionDetailsIndex({
-    Key? key,
+    super.key,
     required this.sessionName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

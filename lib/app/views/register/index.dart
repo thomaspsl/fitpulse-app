@@ -1,5 +1,5 @@
-import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:fitpulse_app/app/components/widgets/input.dart';
+import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +37,7 @@ class _RegisterIndexState extends State<RegisterIndex> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'lib/assets/images/register.png',
+              'lib/assets/pictures/register.png',
               width: MediaQuery.of(context).size.width * 0.7,
             ),
             const SizedBox(height: 20),

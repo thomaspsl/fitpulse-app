@@ -105,7 +105,7 @@ Widget buildTitleWidget(BuildContext context) {
       padding: const EdgeInsets.only(top: 5),
       child: SvgPicture(
         SvgAssetLoader(
-          'lib/assets/images/logo.svg',
+          'lib/assets/pictures/logo.svg',
           colorMapper: Mapper(c: themeProvider.color),
         ),
       ),

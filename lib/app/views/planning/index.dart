@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/app/screens/work/index.dart';
+import 'package:fitpulse_app/app/views/exercise/work/index.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/providers/date.dart';
 import 'package:table_calendar/table_calendar.dart';

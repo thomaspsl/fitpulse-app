@@ -19,6 +19,7 @@ dependencies:
   flutter_colorpicker: ^1.1.0
   sqflite: ^2.4.2
   path: ^1.9.1
+  intl: ^0.20.2
 
   # Firebase libs.
   # google_sign_in: ^7.2.0
@@ -41,14 +42,14 @@ dev_dependencies:
 
 flutter:
   assets:
-    - lib/assets/images/
+    - lib/assets/pictures/
 
   uses-material-design: true
 
 flutter_launcher_icons:
-  image_path: "lib/assets/images/favicon.png"
+  image_path: "lib/assets/pictures/logo.png"
   remove_alpha_ios: true
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "lib/assets/images/logo.png"
+  adaptive_icon_foreground: "lib/assets/pictures/logo.png"
   android: true
   ios: true

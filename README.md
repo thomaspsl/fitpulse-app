@@ -1,6 +1,6 @@
 <div align='center'>
 
-  [<img src='lib/assets/images/logo.png' alt='Fitpulse' height='150' style='margin: 20px'>](.)
+  [<img src='lib/assets/pictures/favicon.png' alt='Fitpulse' height='150' style='margin: 20px'>](.)
 
   # Fitpulse Project
 
@@ -13,7 +13,7 @@
 
   [Contributors](#-contributors) • [Description](#-description) • [How To Use](#-how-to-use) • [Key Features](#-key-features) • [Credits](#-credits) • [Support](#-support) • [License](#-license)
 
-  ![Accueil _ fitpulse](lib/assets/images/poster.jpeg)
+  ![Accueil _ fitpulse](lib/assets/pictures/poster.jpeg)
 
 </div>
 
