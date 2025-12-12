@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/app/fragments/widgets/mapper.dart';
+import 'package:fitpulse_app/app/components/widgets/mapper.dart';
 import 'package:fitpulse_app/app/views/exercise/create.dart';
 import 'package:fitpulse_app/app/views/planning/create.dart';
 import 'package:fitpulse_app/app/views/session/create.dart';

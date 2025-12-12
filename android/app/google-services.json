@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:444409846769:android:d18c5757bfb1b127088250",
         "android_client_info": {
-          "package_name": "com.example.fitpulseapp"
+          "package_name": "com.example.fitpulse_app"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "444409846769-a9oiin1dbe3od8m9g6ltimgs6qo0f0sr.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.fitpulseApp"
+                "bundle_id": "com.example.fitpulse_app"
               }
             }
           ]

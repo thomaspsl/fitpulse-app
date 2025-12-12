@@ -9,7 +9,7 @@
   [![Flutter](https://img.shields.io/badge/Flutter-3.38-377ADB)](https://flutter.dev)
 
   [![Dart](https://img.shields.io/badge/Dart-3.10-00B4AB)](https://dart.dev) 
-  [![Swift](https://img.shields.io/badge/Swift-13.0-F05138)](https://www.apple.com/fr/swift)
+  [![Swift](https://img.shields.io/badge/Swift-15.0-F05138)](https://www.apple.com/fr/swift)
 
   [Contributors](#-contributors) • [Description](#-description) • [How To Use](#-how-to-use) • [Key Features](#-key-features) • [Credits](#-credits) • [Support](#-support) • [License](#-license)
 

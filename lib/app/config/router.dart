@@ -1,6 +1,6 @@
-import 'package:fitpulse_app/app/fragments/widgets/transition.dart';
-import 'package:fitpulse_app/app/fragments/layout/footer.dart';
-import 'package:fitpulse_app/app/fragments/layout/header.dart';
+import 'package:fitpulse_app/app/components/widgets/transition.dart';
+import 'package:fitpulse_app/app/components/layout/footer.dart';
+import 'package:fitpulse_app/app/components/layout/header.dart';
 import 'package:fitpulse_app/app/views/exercise/index.dart';
 import 'package:fitpulse_app/app/views/planning/index.dart';
 import 'package:fitpulse_app/app/views/register/index.dart';
@@ -20,7 +20,7 @@ abstract class AppRouter extends StatelessWidget {
 
   // Global routes for the application
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
       ShellRoute(
         builder: (context, state, child) {

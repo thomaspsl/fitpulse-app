@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/app/fragments/widgets/tab_item.dart';
+import 'package:fitpulse_app/app/components/widgets/tab_item.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
