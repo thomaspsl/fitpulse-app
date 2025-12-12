@@ -1,3 +1,4 @@
+import 'package:fitpulse_app/app/screens/work/index.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/providers/date.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -136,14 +137,26 @@ class _PlanningIndexState extends State<PlanningIndex> {
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  event.session.name,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontStyle: FontStyle.italic,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SessionDetailsIndex(
+                                        sessionName: event.session.name,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Expanded(
+                                  child: Text(
+                                    event.session.name,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               const SizedBox(width: 8),

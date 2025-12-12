@@ -45,6 +45,15 @@ class Exercise {
     );
   }
 
+  /* final List<Exercise> exercises = [
+    Exercise(name: 'pompes', isTime: true, category: 'PERSO', time: Duration(), nb: 10, sessions: 1, recovery: Duration()),
+    Exercise(name: 'pompes', isTime: true, category: 'PERSO', time: Duration(), nb: 10, sessions: 1, recovery: Duration()),
+    Exercise(name: 'pompes', isTime: true, category: 'PERSO', time: Duration(), nb: 10, sessions: 1, recovery: Duration()),
+    Exercise(name: 'pompes', isTime: true, category: 'PERSO', time: Duration(), nb: 10, sessions: 1, recovery: Duration()),
+    Exercise(name: 'pompes', isTime: true, category: 'PERSO', time: Duration(), nb: 10, sessions: 1, recovery: Duration()),
+    Exercise(name: 'pompes', isTime: true, category: 'PERSO', time: Duration(), nb: 10, sessions: 1, recovery: Duration()),
+  ]; */
+
   Exercise copyWith({
     int? id,
     String? name,
@@ -66,4 +75,6 @@ class Exercise {
       recovery: recovery ?? this.recovery,
     );
   }
+
+
 }

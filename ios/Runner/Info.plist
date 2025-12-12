@@ -45,5 +45,20 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>GIDClientID</key>
+        <string>603239255371-qq6lgmr5e06tf2g67l2eb0k99te527ca</string>
+        <key>REVERSED_CLIENT_ID</key>
+        <string>603239255371-qq6lgmr5e06tf2g67l2eb0k99te527ca</string>
+        <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleTypeRole</key>
+                <string>Editor</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>603239255371-qq6lgmr5e06tf2g67l2eb0k99te527ca</string>
+                </array>
+            </dict>
+        </array>
 </dict>
 </plist>
