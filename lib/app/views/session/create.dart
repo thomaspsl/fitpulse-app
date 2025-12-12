@@ -1,5 +1,4 @@
-import 'package:fitpulse_app/app/layouts/layouts/app/input.dart';
-import 'package:fitpulse_app/data/providers/session.dart';
+import 'package:fitpulse_app/app/fragments/widgets/input.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:fitpulse_app/data/models/session.dart';
@@ -273,6 +272,7 @@ class _SessionCreateState extends State<SessionCreate> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

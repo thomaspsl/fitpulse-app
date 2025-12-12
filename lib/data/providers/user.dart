@@ -11,9 +11,7 @@ class UserProvider with ChangeNotifier {
 
   List<User> get users => _users;
 
-  UserProvider() {
-    index();
-  }
+  UserProvider() { index(); }
 
   Future<void> index() async {
     _users = await _repository.index();

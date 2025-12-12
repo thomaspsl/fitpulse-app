@@ -1,5 +1,5 @@
-import 'package:fitpulse_app/data/models/session.dart';
 import 'package:fitpulse_app/data/repositories/session.dart';
+import 'package:fitpulse_app/data/models/session.dart';
 import 'package:flutter/foundation.dart';
 
 class SessionProvider with ChangeNotifier {

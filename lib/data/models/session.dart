@@ -10,13 +10,14 @@ class Session {
   final String category;
   final int recovery;
 
-  Session(
-      {this.id,
-      required this.name,
-      required this.exercises,
-      required this.type,
-      required this.category,
-      required this.recovery});
+  Session({
+    this.id,
+    required this.name,
+    required this.exercises,
+    required this.type,
+    required this.category,
+    required this.recovery
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -41,19 +42,21 @@ class Session {
     );
   }
 
-  Session copyWith(
-      {int? id,
-      String? name,
-      List<Exercise>? exercises,
-      SessionType? type,
-      String? category,
-      int? recovery}) {
+  Session copyWith({
+    int? id,
+    String? name,
+    List<Exercise>? exercises,
+    SessionType? type,
+    String? category,
+    int? recovery
+  }) {
     return Session(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        exercises: exercises ?? this.exercises,
-        type: type ?? this.type,
-        category: category ?? this.category,
-        recovery: recovery ?? this.recovery);
+      id: id ?? this.id,
+      name: name ?? this.name,
+      exercises: exercises ?? this.exercises,
+      type: type ?? this.type,
+      category: category ?? this.category,
+      recovery: recovery ?? this.recovery,
+    );
   }
 }

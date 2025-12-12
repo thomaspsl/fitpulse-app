@@ -1,67 +1,61 @@
+import 'package:fitpulse_app/app/fragments/widgets/tab_item.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class Footer extends StatefulWidget {
+class Footer extends StatelessWidget {
   final bool hide;
 
   const Footer({super.key, this.hide = false});
 
   @override
-  State<Footer> createState() => _FooterState();
-}
-
-class _FooterState extends State<Footer> {
-  @override
   Widget build(BuildContext context) {
-    if (widget.hide) {
-      return SizedBox(height: 0);
+    if (hide) {
+      return const SizedBox.shrink();
     }
 
     var theme = Provider.of<ThemeProvider>(context);
 
     // List of routes
-    List<ScaffoldWithNavBarTabItem> tabs = [
-      const ScaffoldWithNavBarTabItem(
+    final List<TabItem> tabs = [
+      const TabItem(
         url: '/',
         icon: Icon(Icons.home_outlined),
         activeIcon: Icon(Icons.home),
         label: 'Accueil',
       ),
-      const ScaffoldWithNavBarTabItem(
+      const TabItem(
         url: '/exercise',
         icon: Icon(Icons.sports_football_outlined),
         activeIcon: Icon(Icons.sports_football),
         label: 'Exercices',
       ),
-      const ScaffoldWithNavBarTabItem(
+      const TabItem(
         url: '/planning',
         icon: Icon(Icons.calendar_today_outlined),
         activeIcon: Icon(Icons.calendar_today),
         label: 'Planning',
       ),
-      const ScaffoldWithNavBarTabItem(
+      const TabItem(
         url: '/history',
         icon: Icon(Icons.task_outlined),
         activeIcon: Icon(Icons.task),
         label: 'Historique',
       ),
-
     ];
 
-    // On Selection
-    void onItemTapped(int index, int selectedIndex) {
-      if (index != selectedIndex) {
-        setState(() => selectedIndex = index);
+    // Determine the selected index based on the current route
+    int selectedIndex = tabs.indexWhere(
+          (tab) => tab.url == GoRouterState.of(context).matchedLocation,
+    );
+
+    // On tap action for BottomNavigationBar
+    void onItemTapped(int index) {
+      if (selectedIndex != index) {
         GoRouter.of(context).go(tabs[index].url);
       }
     }
-
-    // Check the current index
-    int selectedIndex = tabs.indexWhere(
-      (tab) => tab.url == GoRouterState.of(context).matchedLocation,
-    );
 
     return BottomNavigationBar(
       iconSize: 30,
@@ -73,19 +67,14 @@ class _FooterState extends State<Footer> {
       unselectedItemColor: Theme.of(context).cardColor,
       type: BottomNavigationBarType.fixed,
       currentIndex: selectedIndex == -1 ? 0 : selectedIndex,
-      onTap: (index) => onItemTapped(index, selectedIndex),
-      items: tabs,
+      onTap: onItemTapped,
+      items: tabs.map((tab) {
+        return BottomNavigationBarItem(
+          icon: tab.icon,
+          activeIcon: tab.activeIcon,
+          label: tab.label,
+        );
+      }).toList(),
     );
   }
-}
-
-class ScaffoldWithNavBarTabItem extends BottomNavigationBarItem {
-  final String url;
-
-  const ScaffoldWithNavBarTabItem({
-    required this.url,
-    required super.icon,
-    required Widget super.activeIcon,
-    super.label
-  });
 }

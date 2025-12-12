@@ -17,13 +17,20 @@ class _PlanningCreateState extends State<PlanningCreate> {
   // Variables
 
   void _submitForm(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
+    GoRouter.of(context).pop();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: AppColors.redLava,
+        content: Text('Fonctionnalité indisponible.'),
+      ),
+    );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Séance planifiée avec succès!')),
-      );
-      GoRouter.of(context).pop();
-    }
+    // if (_formKey.currentState!.validate()) {
+    //   GoRouter.of(context).pop();
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(content: Text('Séance planifiée avec succès!')),
+    //   );
+    // }
   }
 
   @override
@@ -63,26 +70,25 @@ class _PlanningCreateState extends State<PlanningCreate> {
                     key: _formKey,
                     child: Column(
                       children: [
-
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () => _submitForm(context),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: AppColors.whiteTitanium,
+                              backgroundColor: theme.color,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 25),
+                            ),
+                            child: const Text(
+                              'Planifier la séance',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
-                  // const SizedBox(height: 20),
-                  // Center(
-                  //   child: ElevatedButton(
-                  //     onPressed: () => _submitForm(context),
-                  //     style: ElevatedButton.styleFrom(
-                  //       foregroundColor: AppColors.whiteTitanium,
-                  //       backgroundColor: theme.color,
-                  //       padding: const EdgeInsets.symmetric(
-                  //           vertical: 10, horizontal: 25),
-                  //     ),
-                  //     child: const Text(
-                  //       'Planifier la séance',
-                  //       style: TextStyle(fontSize: 16),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),

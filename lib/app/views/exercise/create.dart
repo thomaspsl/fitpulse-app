@@ -1,4 +1,4 @@
-import 'package:fitpulse_app/app/layouts/layouts/app/input.dart';
+import 'package:fitpulse_app/app/fragments/widgets/input.dart';
 import 'package:fitpulse_app/data/providers/exercise.dart';
 import 'package:fitpulse_app/data/models/exercise.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
@@ -24,10 +24,13 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
   int sessions = 3;
   int recovery = 60;
 
-  void _submitForm(BuildContext context) {
+  void _submitStore(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      final exercise = Provider.of<ExerciseProvider>(context, listen: false);
-      exercise.store(
+      ExerciseProvider exerciseProvider = Provider.of(context, listen: false);
+      ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+      GoRouter router = GoRouter.of(context);
+
+      exerciseProvider.store(
         Exercise(
           category: 'PERSO',
           isTime: isTime,
@@ -39,16 +42,19 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
         ),
       );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Exercice créé avec succès!')),
+      router.pop();
+      messenger.showSnackBar(
+        SnackBar(
+            backgroundColor: AppColors.greenMint,
+            content: Text('Exercice créé avec succès')),
       );
-      GoRouter.of(context).pop();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeProvider>(context);
+    ThemeProvider themeProvider = Provider.of(context);
+    ThemeData themeData = Theme.of(context);
 
     return DraggableScrollableSheet(
       initialChildSize: 0.7,
@@ -106,7 +112,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                             Text(
                               'Type:',
                               style: TextStyle(
-                                color: Theme.of(context).cardColor,
+                                color: themeData.cardColor,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic,
                               ),
@@ -125,7 +131,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                                   ),
                                   selected: isTime,
                                   backgroundColor: AppColors.whiteTitanium,
-                                  selectedColor: theme.color,
+                                  selectedColor: themeProvider.color,
                                   checkmarkColor: AppColors.whiteTitanium,
                                   onSelected: (bool selected) {
                                     setState(() {
@@ -145,7 +151,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                                   ),
                                   selected: !isTime,
                                   backgroundColor: AppColors.whiteTitanium,
-                                  selectedColor: theme.color,
+                                  selectedColor: themeProvider.color,
                                   checkmarkColor: AppColors.whiteTitanium,
                                   onSelected: (bool selected) {
                                     setState(() {
@@ -160,7 +166,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                         const SizedBox(height: 10),
                         if (isTime)
                           Input(
-                            key: GlobalKey(),
+                            key: ValueKey('time'),
                             label: 'Temps (secondes)',
                             hintText: '30',
                             keyboardType:
@@ -186,7 +192,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                           )
                         else
                           Input(
-                            key: GlobalKey(),
+                            key: ValueKey('nb'),
                             label: 'Répétitions',
                             hintText: '10',
                             keyboardType:
@@ -266,10 +272,10 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                   const SizedBox(height: 20),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () => _submitForm(context),
+                      onPressed: () => _submitStore(context),
                       style: ElevatedButton.styleFrom(
                         foregroundColor: AppColors.whiteTitanium,
-                        backgroundColor: theme.color,
+                        backgroundColor: themeProvider.color,
                         padding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 25),
                       ),
@@ -279,6 +285,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

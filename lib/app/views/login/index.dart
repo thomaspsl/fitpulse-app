@@ -1,5 +1,5 @@
-import 'package:fitpulse_app/app/layouts/layouts/app/input.dart';
 import 'package:fitpulse_app/app/config/colors.dart';
+import 'package:fitpulse_app/app/fragments/widgets/input.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 

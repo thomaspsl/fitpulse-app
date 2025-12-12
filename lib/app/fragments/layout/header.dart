@@ -1,7 +1,7 @@
-import 'package:fitpulse_app/app/layouts/layouts/mapper.dart';
-import 'package:fitpulse_app/app/screens/exercise/create.dart';
-import 'package:fitpulse_app/app/screens/planning/create.dart';
-import 'package:fitpulse_app/app/screens/session/create.dart';
+import 'package:fitpulse_app/app/fragments/widgets/mapper.dart';
+import 'package:fitpulse_app/app/views/exercise/create.dart';
+import 'package:fitpulse_app/app/views/planning/create.dart';
+import 'package:fitpulse_app/app/views/session/create.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -18,101 +18,120 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+
     if (hide) {
       return AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: themeData.scaffoldBackgroundColor,
       );
     }
 
-    var theme = Provider.of<ThemeProvider>(context);
-
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: themeData.scaffoldBackgroundColor,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
-
-      // Left part
-      leading: _buildLeadingWidget(context, theme.color),
-
-      // Center part
-      title: GestureDetector(
-        onTap: () => GoRouter.of(context).goNamed('session.index'),
-        child: Container(
-          padding: const EdgeInsets.only(top: 5),
-          child: SvgPicture(
-            SvgAssetLoader(
-              'lib/assets/images/logo.svg',
-              colorMapper: SvgColorMapper(svgColor: theme.color),
-            ),
-          ),
-        ),
-      ),
-
-      // Right part
-      actions: _buildActionsWidget(context, theme.color),
+      leading: buildLeadingWidget(context),
+      title: buildTitleWidget(context),
+      actions: buildActionsWidget(context),
     );
   }
+}
 
-  Widget _buildLeadingWidget(BuildContext context, Color color) {
-    final GoRouter router = GoRouter.of(context);
-    final bool canPop = router.canPop();
+Widget buildLeadingWidget(BuildContext context) {
+  GoRouterState routerState = GoRouterState.of(context);
+  MediaQueryData mediaQueryData = MediaQuery.of(context);
+  ThemeProvider themeProvider = Provider.of(context);
+  ThemeData themeData = Theme.of(context);
+  GoRouter router = GoRouter.of(context);
 
-    final String currentRoute = GoRouterState.of(context).matchedLocation;
+  bool canPop = router.canPop();
+  String currentRoute = routerState.uri.toString();
+  Widget? bottomSheetContent = getBottomSheetContent(currentRoute);
 
-    Widget? bottomSheetContent;
-    if (currentRoute == '/') {
-      bottomSheetContent = const SessionCreate();
-    } else if (currentRoute == '/exercise') {
-      bottomSheetContent = const ExerciseCreate();
-    } else if (currentRoute == '/planning') {
-      bottomSheetContent = const PlanningCreate();
-    }
-
-    if (canPop) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5, left: 5),
-        child: GestureDetector(
-          onTap: () => GoRouter.of(context).pop(),
-          child: Icon(Icons.chevron_left_rounded, color: color, size: 40),
-        ),
-      );
-    } else if (bottomSheetContent != null) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5, left: 5),
-        child: GestureDetector(
-          onTap: () => {
-            showModalBottomSheet(
-              context: context,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              useSafeArea: true,
-              isScrollControlled: true,
-              builder: (context) => bottomSheetContent!,
+  if (canPop) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, left: 5),
+      child: GestureDetector(
+        onTap: () => router.pop(),
+        child: Icon(Icons.chevron_left_rounded,
+            color: themeProvider.color, size: 40),
+      ),
+    );
+  } else if (bottomSheetContent != null) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, left: 5),
+      child: GestureDetector(
+        onTap: () => showModalBottomSheet(
+          context: context,
+          backgroundColor: themeData.scaffoldBackgroundColor,
+          useSafeArea: true,
+          isScrollControlled: true,
+          builder: (context) => Padding(
+            padding: EdgeInsets.only(
+              bottom: mediaQueryData.viewInsets.bottom,
             ),
-          },
-          child: Icon(Icons.add_outlined, color: color, size: 40),
-        ),
-      );
-    } else {
-      return Container();
-    }
-  }
-
-  List<Widget> _buildActionsWidget(BuildContext context, Color color) {
-    final String currentRoute = GoRouterState.of(context).uri.toString();
-
-    if (currentRoute != '/profile') {
-      return [
-        Padding(
-          padding: const EdgeInsets.only(top: 2, right: 15),
-          child: GestureDetector(
-            onTap: () => GoRouter.of(context).pushNamed('profile.index'),
-            child: Icon(Icons.account_circle_rounded, color: color, size: 40),
+            child: bottomSheetContent,
           ),
         ),
-      ];
-    } else {
-      return [];
-    }
+        child: Icon(Icons.add_outlined, color: themeProvider.color, size: 40),
+      ),
+    );
+  } else {
+    return const SizedBox.shrink();
+  }
+}
+
+Widget? getBottomSheetContent(String currentRoute) {
+  switch (currentRoute) {
+    case '/':
+      return const SessionCreate();
+    case '/exercise':
+      return const ExerciseCreate();
+    case '/planning':
+      return const PlanningCreate();
+    default:
+      return null;
+  }
+}
+
+Widget buildTitleWidget(BuildContext context) {
+  ThemeProvider themeProvider = Provider.of(context);
+  GoRouter router = GoRouter.of(context);
+
+  return GestureDetector(
+    onTap: () => router.goNamed('session.index'),
+    child: Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: SvgPicture(
+        SvgAssetLoader(
+          'lib/assets/images/logo.svg',
+          colorMapper: Mapper(c: themeProvider.color),
+        ),
+      ),
+    ),
+  );
+}
+
+List<Widget> buildActionsWidget(BuildContext context) {
+  GoRouterState routerState = GoRouterState.of(context);
+  ThemeProvider themeProvider = Provider.of(context);
+  GoRouter goRouter = GoRouter.of(context);
+
+  String currentRoute = routerState.uri.toString();
+
+  if (currentRoute != '/profile') {
+    return [
+      Padding(
+        padding: const EdgeInsets.only(top: 2, right: 15),
+        child: GestureDetector(
+          onTap: () => goRouter.pushNamed('profile.index'),
+          child: Icon(Icons.account_circle_rounded,
+              color: themeProvider.color, size: 40),
+        ),
+      ),
+    ];
+  } else {
+    return [];
   }
 }

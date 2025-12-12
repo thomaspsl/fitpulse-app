@@ -1,5 +1,5 @@
 import 'package:fitpulse_app/data/providers/exercise.dart';
-// import 'package:fitpulse_app/data/providers/theme.dart';
+import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:fitpulse_app/app/config/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -15,34 +15,46 @@ class ExerciseEdit extends StatefulWidget {
 }
 
 class _ExerciseEditState extends State<ExerciseEdit> {
+  void _submitUpdate(BuildContext context, String id) {
+    ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+    GoRouter router = GoRouter.of(context);
 
-  void _submitDelete(BuildContext context) {
-    var exercise = Provider.of<ExerciseProvider>(context);
-
-    // try {
-    //   int idInt = int.parse(id);
-    //   exercise.destroy(idInt);
-    // } catch (e) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(
-    //         content:
-    //         Text('Impossible de supprimer l\'exercice.')),
-    //   );
-    // }
-    GoRouter.of(context).goNamed('exercise.index');
-
-    GoRouter.of(context).pop();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        backgroundColor: AppColors.redLava,
-        content: Text('Fonctionnalité indisponible.'),
-      ),
+    router.pop();
+    messenger.showSnackBar(
+      SnackBar(
+          backgroundColor: AppColors.redLava,
+          content: Text('Fonctionnalité indisponible.')),
     );
+  }
+
+  void _submitDestroy(BuildContext context, String id) {
+    ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+    ExerciseProvider exerciseProvider = Provider.of(context);
+    GoRouter router = GoRouter.of(context);
+
+    try {
+      int idInt = int.parse(id);
+      exerciseProvider.destroy(idInt);
+      router.pop();
+      messenger.showSnackBar(
+        SnackBar(
+            backgroundColor: AppColors.greenMint,
+            content: Text('Exercice supprimé.')),
+      );
+    } catch (e) {
+      router.pop();
+      messenger.showSnackBar(
+        SnackBar(
+            backgroundColor: AppColors.redLava,
+            content: Text('Erreur de suppression.')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // var theme = Provider.of<ThemeProvider>(context);
+    ThemeProvider themeProvider = Provider.of(context);
+
 
     return Container(
       width: double.infinity,
@@ -64,25 +76,25 @@ class _ExerciseEditState extends State<ExerciseEdit> {
                   ),
                 ),
               ),
-              // const SizedBox(height: 20),
-              // Center(
-              //   child: ElevatedButton(
-              //     onPressed: () => {},
-              //     style: ElevatedButton.styleFrom(
-              //       foregroundColor: AppColors.whiteTitanium,
-              //       backgroundColor: theme.color,
-              //       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              //     ),
-              //     child: const Text(
-              //       'Modifier l\'exercice',
-              //       style: TextStyle(fontSize: 16),
-              //     ),
-              //   ),
-              // ),
+              const SizedBox(height: 20),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () => _submitUpdate(context, widget.id),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: AppColors.whiteTitanium,
+                    backgroundColor: themeProvider.color,
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  ),
+                  child: const Text(
+                    'Modifier l\'exercice',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
               const SizedBox(height: 10),
               Center(
                 child: ElevatedButton(
-                  onPressed: () => _submitDelete,
+                  onPressed: () => _submitDestroy(context, widget.id),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: AppColors.whiteTitanium,
                     backgroundColor: AppColors.redLava,
