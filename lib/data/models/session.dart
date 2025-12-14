@@ -34,7 +34,10 @@ class Session {
       id: map['id'],
       name: map['name'],
       exercises: exercises,
-      type: SessionType.values.firstWhere((e) => e.name == (map['type'] ?? 'amrap')),
+      type: SessionType.values.firstWhere(
+        (e) => e.name == (map['type'] ?? 'amrap'),
+        orElse: () => SessionType.amrap
+      ),
       category: map['category'],
       recovery: map['recovery'],
     );
