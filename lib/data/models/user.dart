@@ -21,7 +21,7 @@ class User {
       'name': name,
       'email' : email,
       'password' : password,
-      'color': color.value,
+      'color': color,
     };
   }
 

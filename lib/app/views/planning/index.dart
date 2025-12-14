@@ -90,7 +90,7 @@ class _PlanningIndexState extends State<PlanningIndex> {
                   shape: BoxShape.circle,
                 ),
                 todayDecoration: BoxDecoration(
-                  color: theme.color.withOpacity(0.5),
+                  color: theme.color.withValues(alpha: 0.5),
                   shape: BoxShape.circle,
                 ),
               ),

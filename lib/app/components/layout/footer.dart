@@ -11,9 +11,7 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (hide) {
-      return const SizedBox.shrink();
-    }
+    if (hide) return const SizedBox.shrink();
 
     var theme = Provider.of<ThemeProvider>(context);
 
@@ -46,9 +44,7 @@ class Footer extends StatelessWidget {
     ];
 
     // Determine the selected index based on the current route
-    int selectedIndex = tabs.indexWhere(
-          (tab) => tab.url == GoRouterState.of(context).matchedLocation,
-    );
+    int selectedIndex = tabs.indexWhere((tab) => tab.url == GoRouterState.of(context).matchedLocation);
 
     // On tap action for BottomNavigationBar
     void onItemTapped(int index) {

@@ -41,7 +41,7 @@ class HistoryIndex extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       gradient: LinearGradient(
-                        colors: [theme.color, theme.color.withOpacity(0.5)],
+                        colors: [theme.color, theme.color.withValues(alpha: 0.5)],
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                       ),

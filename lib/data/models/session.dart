@@ -1,6 +1,6 @@
 import 'package:fitpulse_app/data/models/exercise.dart';
 
-enum SessionType { AMRAP, EMOM, HIIT }
+enum SessionType { amrap, emom, hiit }
 
 class Session {
   final int? id;
@@ -23,7 +23,7 @@ class Session {
     return {
       'id': id,
       'name': name,
-      'type': type.index,
+      'type': type.name,
       'category': category,
       'recovery': recovery
     };
@@ -34,9 +34,7 @@ class Session {
       id: map['id'],
       name: map['name'],
       exercises: exercises,
-      type: SessionType.values.firstWhere(
-        (e) => e.toString().split('.').last == map['type'],
-      ),
+      type: SessionType.values.firstWhere((e) => e.name == (map['type'] ?? 'amrap')),
       category: map['category'],
       recovery: map['recovery'],
     );

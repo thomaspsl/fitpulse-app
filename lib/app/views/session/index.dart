@@ -44,10 +44,7 @@ class SessionIndex extends StatelessWidget {
     );
   }
 
-  Map<String, List<dynamic>> _groupSessions(
-      List<dynamic> sessions,
-      Map<String, String> categoryTitles,
-      ) {
+  Map<String, List<dynamic>> _groupSessions(List<dynamic> sessions, Map<String, String> categoryTitles) {
     final Map<String, List<dynamic>> groupedSessions = {'AUTRES': []};
 
     for (var i = 0; i < sessions.length; i++) {

@@ -88,7 +88,7 @@ class ExerciseIndex extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 gradient: LinearGradient(
-                                  colors: [theme.color.withOpacity(0.5), theme.color],
+                                  colors: [theme.color.withValues(alpha: 0.5), theme.color],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                 ),
@@ -111,7 +111,7 @@ class ExerciseIndex extends StatelessWidget {
                                       "Temps : ${exercise.time.inSeconds}s",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: AppColors.whiteTitanium.withOpacity(0.7),
+                                        color: AppColors.whiteTitanium.withValues(alpha: 0.7),
                                         fontSize: 14,
                                       ),
                                     )
@@ -120,14 +120,14 @@ class ExerciseIndex extends StatelessWidget {
                                       "Séries : ${exercise.nb}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: AppColors.whiteTitanium.withOpacity(0.7),
+                                        color: AppColors.whiteTitanium.withValues(alpha: 0.7),
                                         fontSize: 14,
                                       ),
                                     ),
                                   const SizedBox(height: 5),
                                   Icon(
                                     Icons.timer,
-                                    color: AppColors.whiteTitanium.withOpacity(0.7),
+                                    color: AppColors.whiteTitanium.withValues(alpha: 0.7),
                                     size: 20,
                                   ),
                                   const SizedBox(height: 5),
@@ -135,8 +135,7 @@ class ExerciseIndex extends StatelessWidget {
                                     "Récup : ${exercise.recovery.inSeconds }s",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: AppColors.whiteTitanium
-                                          .withOpacity(0.7),
+                                      color: AppColors.whiteTitanium.withValues(alpha: 0.7),
                                       fontSize: 14,
                                     ),
                                   ),

@@ -17,9 +17,9 @@ class ExerciseEdit extends StatefulWidget {
 class _ExerciseEditState extends State<ExerciseEdit> {
   void _submitUpdate(BuildContext context, String id) {
     ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
-    GoRouter router = GoRouter.of(context);
+    // GoRouter router = GoRouter.of(context);
 
-    router.pop();
+    // router.pop();
     messenger.showSnackBar(
       SnackBar(
           backgroundColor: AppColors.redLava,
@@ -29,7 +29,7 @@ class _ExerciseEditState extends State<ExerciseEdit> {
 
   void _submitDestroy(BuildContext context, String id) {
     ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
-    ExerciseProvider exerciseProvider = Provider.of(context);
+    ExerciseProvider exerciseProvider = Provider.of(context, listen: false);
     GoRouter router = GoRouter.of(context);
 
     try {

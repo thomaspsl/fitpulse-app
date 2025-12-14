@@ -56,7 +56,7 @@ class _InputState extends State<Input> {
               borderSide: const BorderSide(color: Colors.transparent),
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            focusColor: Theme.of(context).indicatorColor,
+            focusColor: Theme.of(context).colorScheme.surface,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(color: Colors.transparent),

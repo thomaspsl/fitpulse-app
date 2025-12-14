@@ -27,7 +27,7 @@ class SessionCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           gradient: LinearGradient(
-            colors: [theme.color, theme.color.withOpacity(0.5)],
+            colors: [theme.color, theme.color.withValues(alpha: 0.5)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -39,7 +39,7 @@ class SessionCard extends StatelessWidget {
               session.type.toString().split('.').last,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: AppColors.whiteTitanium.withOpacity(0.7),
+                color: AppColors.whiteTitanium.withValues(alpha: 0.7),
                 fontSize: 14,
               ),
             ),
@@ -55,7 +55,7 @@ class SessionCard extends StatelessWidget {
             const SizedBox(height: 5),
             Icon(
               Icons.timer,
-              color: AppColors.whiteTitanium.withOpacity(0.7),
+              color: AppColors.whiteTitanium.withValues(alpha: 0.7),
               size: 20,
             ),
             const SizedBox(height: 5),
@@ -63,7 +63,7 @@ class SessionCard extends StatelessWidget {
               "Récup : ${session.recovery}s",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: AppColors.whiteTitanium.withOpacity(0.7),
+                color: AppColors.whiteTitanium.withValues(alpha: 0.7),
                 fontSize: 14,
               ),
             ),

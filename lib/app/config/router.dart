@@ -142,9 +142,9 @@ abstract class AppRouter extends StatelessWidget {
                   (context, animation, secondaryAnimation, child) => Transition(
                       animation: animation,
                       secondaryAnimation: secondaryAnimation,
-                      child: child,
                       exit: currentRouteWidget,
-                      x: 1),
+                      x: 1,
+                      child: child),
               child: const ProfileIndex(),
             ),
           ),

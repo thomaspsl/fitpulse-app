@@ -21,7 +21,7 @@ class SqliteService {
   Future<Database> _initDB() async {
     String path = join(await getDatabasesPath(), 'fitpulse.db');
 
-    print('Chemin de la base de données : $path');
+    // print('Chemin de la base de données : $path');
 
     return await openDatabase(
       path,
@@ -107,49 +107,49 @@ class SqliteService {
     List<Map<String, dynamic>> sessions = [
       {
         'name': 'Morning Yoga',
-        'type': 'AMRAP',
+        'type': 'amrap',
         'category': 'PERSO',
         'recovery': 15,
       },
       {
         'name': 'Strength Circuit',
-        'type': 'HIIT',
+        'type': 'hiit',
         'category': 'MUSCU',
         'recovery': 30,
       },
       {
         'name': 'Evening Cardio',
-        'type': 'HIIT',
+        'type': 'hiit',
         'category': 'CARDIO',
         'recovery': 10,
       },
       {
         'name': 'Full Body Burn',
-        'type': 'EMOM',
+        'type': 'emom',
         'category': 'MUSCU',
         'recovery': 20,
       },
       {
         'name': 'Fat Blaster',
-        'type': 'HIIT',
+        'type': 'hiit',
         'category': 'CARDIO',
         'recovery': 15,
       },
       {
         'name': 'Beach Ready',
-        'type': 'HIIT',
+        'type': 'hiit',
         'category': 'PERSO',
         'recovery': 25,
       },
       {
         'name': 'Plage Cardio',
-        'type': 'AMRAP',
+        'type': 'amrap',
         'category': 'CARDIO',
         'recovery': 10,
       },
       {
         'name': 'Core Crusher',
-        'type': 'EMOM',
+        'type': 'emom',
         'category': 'PERSO',
         'recovery': 20,
       },
