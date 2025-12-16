@@ -84,8 +84,7 @@ abstract class AppRouter extends StatelessWidget {
                   path: '/:id/edit',
                   name: 'session.edit',
                   pageBuilder: (context, state) {
-                    currentRouteWidget =
-                        SessionEdit(id: state.pathParameters['id']!);
+                    currentRouteWidget = SessionEdit(id: state.pathParameters['id']!);
                     return NoTransitionPage(
                       child: currentRouteWidget,
                     );
@@ -138,13 +137,13 @@ abstract class AppRouter extends StatelessWidget {
             path: '/profile',
             name: 'profile.index',
             pageBuilder: (context, state) => CustomTransitionPage(
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) => Transition(
-                      animation: animation,
-                      secondaryAnimation: secondaryAnimation,
-                      exit: currentRouteWidget,
-                      x: 1,
-                      child: child),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) => Transition(
+                animation: animation,
+                secondaryAnimation: secondaryAnimation,
+                exit: currentRouteWidget,
+                x: 1,
+                child: child
+              ),
               child: const ProfileIndex(),
             ),
           ),

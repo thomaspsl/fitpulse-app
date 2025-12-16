@@ -1,5 +1,4 @@
 import 'package:fitpulse_app/app/components/widgets/tab_item.dart';
-import 'package:fitpulse_app/app/config/controller.dart';
 import 'package:fitpulse_app/data/providers/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +14,6 @@ class Footer extends StatelessWidget {
     if (hide) return const SizedBox.shrink();
 
     var theme = Provider.of<ThemeProvider>(context);
-    var currentPath = Controller.getCurrentPath(context);
 
     // List of routes
     final List<TabItem> tabs = [
@@ -46,7 +44,7 @@ class Footer extends StatelessWidget {
     ];
 
     // Determine the selected index based on the current route
-    int selectedIndex = tabs.indexWhere((tab) => tab.url == currentPath);
+    int selectedIndex = tabs.indexWhere((tab) => tab.url == GoRouterState.of(context).matchedLocation);
 
     // On tap action for BottomNavigationBar
     void onItemTapped(int index) {
